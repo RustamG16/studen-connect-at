@@ -62,10 +62,10 @@ const Index = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden gradient-hero py-20 md:py-32">
+      <section className="relative overflow-hidden gradient-hero min-h-[400px] md:min-h-[450px] lg:min-h-[400px]">
         <div className="container relative z-10 mx-auto px-4">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <div className="text-center lg:text-left">
+          <div className="grid items-center gap-8 md:gap-10 lg:gap-16 lg:grid-cols-2">
+            <div className="text-center lg:text-left lg:pl-8 xl:pl-12">
               <h1 className="mb-6 text-4xl font-bold text-primary-foreground md:text-5xl lg:text-6xl">
                 Funding. Housing. Support.
               </h1>
@@ -84,11 +84,11 @@ const Index = () => {
                 </Button>
               </div>
             </div>
-            <div className="flex justify-center lg:justify-end">
+            <div className="flex items-center justify-center lg:justify-center xl:justify-end h-full w-full ">
               <img
                 src={logo}
                 alt="Care4Students Dragonfly"
-                className="h-64 w-64 animate-pulse md:h-80 md:w-80"
+                className="h-[95%] w-auto animate-pulse object-contain  xl:mr-9"
               />
             </div>
           </div>

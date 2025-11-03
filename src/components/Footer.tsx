@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
-import logo from "@/assets/dragonfly-logo.png";
+import logo from "@/assets/dragonfly.png";
 
 const Footer = () => {
   return (
@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <div className="mb-4 flex items-center gap-3">
-              <img src={logo} alt="Care4Students" className="h-10 w-10" />
+              <img src={logo} alt="Care4Students" className="h-16 w-16 object-contain" />
               <span className="text-lg font-bold text-foreground">Care4Students</span>
             </div>
             <p className="text-sm text-muted-foreground">
