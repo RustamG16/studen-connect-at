@@ -67,7 +67,7 @@ const DashboardSidebar = () => {
           <button
             onClick={() => {
               // Mock logout
-              window.location.href = "/";
+              window.location.href = import.meta.env.BASE_URL;
             }}
             className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-muted-foreground transition-smooth hover:bg-muted hover:text-foreground"
           >
