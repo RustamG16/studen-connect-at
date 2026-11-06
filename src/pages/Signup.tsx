@@ -4,11 +4,14 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import PageShell from "@/components/PageShell";
+import PageHeader from "@/components/page/PageHeader";
+import SignupProgress from "@/components/ledger/SignupProgress";
+import { useLedger } from "@/lib/ledger";
+
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -20,6 +23,7 @@ const Signup = () => {
   const { signup } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const saved = useLedger().rows.length;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,97 +57,100 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-background to-muted/20 px-4 py-12">
-        <Card className="w-full max-w-md">
-          <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl font-bold text-center">Create an account</CardTitle>
-            <CardDescription className="text-center">
-              Fill in your information to get started
-            </CardDescription>
-          </CardHeader>
-          <form onSubmit={handleSubmit}>
-            <CardContent className="space-y-4">
-              {error && (
-                <Alert variant="destructive">
-                  <AlertDescription>{error}</AlertDescription>
-                </Alert>
-              )}
-              <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
-                <Input
-                  id="name"
-                  type="text"
-                  placeholder="John Doe"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  disabled={loading}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="name@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  disabled={loading}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  disabled={loading}
-                  minLength={6}
-                />
-                <p className="text-xs text-muted-foreground">
-                  Must be at least 6 characters
-                </p>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
-                <Input
-                  id="confirmPassword"
-                  type="password"
-                  placeholder="••••••••"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  required
-                  disabled={loading}
-                  minLength={6}
-                />
-              </div>
-            </CardContent>
-            <CardFooter className="flex flex-col gap-4">
-              <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? "Creating account..." : "Sign up"}
-              </Button>
-              <p className="text-sm text-muted-foreground text-center">
-                Already have an account?{" "}
-                <Link to="/login" className="text-primary hover:underline font-medium">
-                  Sign in
-                </Link>
-              </p>
-            </CardFooter>
-          </form>
-        </Card>
-      </div>
-      <Footer />
-    </div>
+    <PageShell>
+      <PageHeader
+        eyebrow="Sign Up"
+        title="Create an account"
+        lead="Fill in your information to get started"
+      >
+        <SignupProgress
+          lines={[
+            name.trim() !== "",
+            EMAIL.test(email),
+            password.length >= 6,
+            confirmPassword !== "" && confirmPassword === password,
+          ]}
+        />
+      </PageHeader>
+      <section className="shell-x pb-12 pt-8 md:pb-24 md:pt-12">
+        {saved ? (
+          <p className="t-meta tnum mb-5 text-ink">
+            {saved} {saved === 1 ? "bonus" : "bonuses"} in your ledger
+          </p>
+        ) : null}
+        <form onSubmit={handleSubmit} className="max-w-md space-y-5">
+          {error && (
+            <Alert variant="destructive">
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+          <div>
+            <Label htmlFor="name" className="mb-2 block text-sm font-bold">Full Name</Label>
+            <Input
+              id="name"
+              type="text"
+              placeholder="John Doe"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              disabled={loading}
+              className="h-12"
+            />
+          </div>
+          <div>
+            <Label htmlFor="email" className="mb-2 block text-sm font-bold">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="name@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              disabled={loading}
+              className="h-12"
+            />
+          </div>
+          <div>
+            <Label htmlFor="password" className="mb-2 block text-sm font-bold">Password</Label>
+            <Input
+              id="password"
+              type="password"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              disabled={loading}
+              minLength={6}
+              className="h-12"
+            />
+            <p className="t-meta mt-2 text-ink-2">Must be at least 6 characters</p>
+          </div>
+          <div>
+            <Label htmlFor="confirmPassword" className="mb-2 block text-sm font-bold">Confirm Password</Label>
+            <Input
+              id="confirmPassword"
+              type="password"
+              placeholder="••••••••"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              disabled={loading}
+              minLength={6}
+              className="h-12"
+            />
+          </div>
+          <Button type="submit" size="lg" className="w-full" disabled={loading}>
+            {loading ? "Creating account..." : "Sign up"}
+          </Button>
+          <p className="flex flex-wrap items-center gap-x-1 text-ink-2">
+            Already have an account?{" "}
+            <Link to="/login" className="inline-flex min-h-11 items-center font-bold text-primary-text underline underline-offset-4">
+              Sign in
+            </Link>
+          </p>
+        </form>
+      </section>
+    </PageShell>
   );
 };
 
 export default Signup;
-
-
-
-

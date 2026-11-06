@@ -3,13 +3,39 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent } from "@/components/ui/card";
-import { Mail, Phone, MapPin, MessageCircle, Send } from "lucide-react";
 import { toast } from "sonner";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import PageShell from "@/components/PageShell";
+import PageHeader from "@/components/page/PageHeader";
+import { usePageRows } from "@/components/page/usePageRows";
+
+const contactMethods = [
+  {
+    title: "Email Us",
+    value: "hello@care4students.at",
+    description: "Send us an email anytime",
+  },
+  {
+    title: "Call Us",
+    value: "+43 123 456 789",
+    description: "Mon-Fri, 9:00 - 18:00",
+  },
+  {
+    title: "Visit Us",
+    value: "Vienna, Austria",
+    description: "By appointment only",
+  },
+  {
+    title: "Live Chat",
+    value: "Available 24/7",
+    description: "Instant support in dashboard",
+  },
+];
+
+
+const labelClass = "mb-2 block text-sm font-bold text-foreground";
 
 const Contact = () => {
+  const rows = usePageRows();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -31,153 +57,107 @@ const Contact = () => {
     }));
   };
 
-  const contactMethods = [
-    {
-      icon: Mail,
-      title: "Email Us",
-      value: "hello@care4students.at",
-      description: "Send us an email anytime",
-    },
-    {
-      icon: Phone,
-      title: "Call Us",
-      value: "+43 123 456 789",
-      description: "Mon-Fri, 9:00 - 18:00",
-    },
-    {
-      icon: MapPin,
-      title: "Visit Us",
-      value: "Vienna, Austria",
-      description: "By appointment only",
-    },
-    {
-      icon: MessageCircle,
-      title: "Live Chat",
-      value: "Available 24/7",
-      description: "Instant support in dashboard",
-    },
-  ];
-
   return (
-    <div className="min-h-screen">
-      <Navbar />
+    <PageShell>
+      <PageHeader
+        eyebrow="Contact"
+        title="Get in Touch"
+        lead="Have questions? Need help? Our team is here to support you every step of the way."
+      />
 
-      {/* Header */}
-      <section className="gradient-hero py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="mb-6 text-4xl font-bold text-primary-foreground md:text-5xl">
-            Get in Touch
-          </h1>
-          <p className="mx-auto max-w-2xl text-lg text-primary-foreground/90">
-            Have questions? Need help? Our team is here to support you every step of the way.
-          </p>
-        </div>
-      </section>
-
-      {/* Contact Methods */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-foreground">Ways to Reach Us</h2>
-            <p className="text-muted-foreground">Choose the method that works best for you</p>
+      <div ref={rows}>
+        <section className="clip-x" style={{ paddingBlock: "var(--section-y)" }}>
+          <div className="shell-x">
+            <div className="mb-8 md:mb-12">
+              <h2 className="t-display mb-4 text-[clamp(1.75rem,4vw,3.5rem)]">Ways to Reach Us</h2>
+              <p className="t-lead max-w-[46ch] text-ink-2">Choose the method that works best for you</p>
+            </div>
+            <ul className="border-b">
+              {contactMethods.map((method, i) => (
+                <li
+                  key={method.title}
+                  data-rule-row
+                  style={{ "--i": Math.min(i, 7) } as React.CSSProperties}
+                  className="row-rule grid gap-x-6 gap-y-1 py-5 md:grid-cols-12 md:items-baseline md:py-7"
+                >
+                  <h3 className="t-row-name text-ink-2 md:col-span-3">{method.title}</h3>
+                  <p className="tnum text-xl font-bold md:col-span-5 md:text-2xl">{method.value}</p>
+                  <p className="text-ink-2 md:col-span-4">{method.description}</p>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {contactMethods.map((method, index) => (
-              <Card key={index} className="border-2 text-center transition-smooth hover:border-primary">
-                <CardContent className="p-6">
-                  <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3">
-                    <method.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="mb-2 text-lg font-semibold text-foreground">{method.title}</h3>
-                  <p className="mb-1 font-medium text-primary">{method.value}</p>
-                  <p className="text-sm text-muted-foreground">{method.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+        </section>
+
+        <section className="clip-x rule" style={{ paddingBlock: "var(--section-y)" }}>
+          <div className="shell-x grid gap-x-6 gap-y-8 md:grid-cols-12">
+            <div className="md:col-span-5">
+              <h2 className="t-display mb-4 text-[clamp(1.75rem,4vw,3.5rem)]">Send Us a Message</h2>
+              <p className="t-lead max-w-[36ch] text-ink-2">Fill out the form below and we'll respond within 24 hours</p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-5 md:col-span-6 md:col-start-7">
+              <div>
+                <Label htmlFor="name" className={labelClass}>Your Name</Label>
+                <Input
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Anna Müller"
+                  required
+                  className="h-12"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="email" className={labelClass}>Email Address</Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="anna@example.com"
+                  required
+                  className="h-12"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="subject" className={labelClass}>Subject</Label>
+                <Input
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder="How can we help?"
+                  required
+                  className="h-12"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="message" className={labelClass}>Message</Label>
+                <Textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell us more about your question or issue..."
+                  required
+                  className="min-h-[150px]"
+                />
+              </div>
+
+              <Button type="submit" size="lg" className="w-full md:w-auto">
+                Send Message
+              </Button>
+            </form>
           </div>
-        </div>
-      </section>
-
-      {/* Contact Form */}
-      <section className="gradient-subtle py-20">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-2xl">
-            <Card className="border-2">
-              <CardContent className="p-8">
-                <div className="mb-8 text-center">
-                  <h2 className="mb-4 text-3xl font-bold text-foreground">Send Us a Message</h2>
-                  <p className="text-muted-foreground">
-                    Fill out the form below and we'll respond within 24 hours
-                  </p>
-                </div>
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <Label htmlFor="name">Your Name</Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Anna Müller"
-                      required
-                      className="mt-2"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="email">Email Address</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="anna@example.com"
-                      required
-                      className="mt-2"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="subject">Subject</Label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      placeholder="How can we help?"
-                      required
-                      className="mt-2"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="message">Message</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Tell us more about your question or issue..."
-                      required
-                      className="mt-2 min-h-[150px]"
-                    />
-                  </div>
-
-                  <Button type="submit" size="lg" className="w-full">
-                    <Send className="mr-2 h-4 w-4" />
-                    Send Message
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-    </div>
+        </section>
+      </div>
+    </PageShell>
   );
 };
 

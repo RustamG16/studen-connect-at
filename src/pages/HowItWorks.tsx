@@ -1,179 +1,158 @@
-import { Link } from "react-router-dom";
+import { asset } from "@/lib/asset";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { UserPlus, FileSearch, Upload, CheckCircle, ArrowRight } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import AuthCta from "@/components/AuthCta";
+import PageShell from "@/components/PageShell";
+import PageHeader from "@/components/page/PageHeader";
+import HeaderBanner from "@/components/media/HeaderBanner";
+import ClosingBand from "@/components/page/ClosingBand";
+import Fold from "@/components/page/Fold";
+import { usePageRows } from "@/components/page/usePageRows";
+import MediaLoop from "@/components/media/MediaLoop";
+
+const steps = [
+  {
+    title: "Create Your Profile",
+    description:
+      "Sign up and tell us about your situation - study status, income, housing needs, and preferences.",
+    time: "2 minutes",
+    card: "how-profile",
+  },
+  {
+    title: "Get Matched",
+    description:
+      "Our system analyzes your profile and finds all bonuses, housing options, and potential roommates that match you.",
+    time: "Instant",
+    card: "how-matched",
+  },
+  {
+    title: "Upload Documents",
+    description:
+      "Securely upload your required documents. We guide you through exactly what you need for each application.",
+    time: "5-10 minutes",
+    card: "how-documents",
+  },
+  {
+    title: "Receive Support",
+    description:
+      "Track your applications, get expert help, and receive notifications about your bonuses and housing matches.",
+    time: "Ongoing",
+    card: "how-support",
+  },
+];
+
+const features = [
+  {
+    title: "For Bonuses",
+    items: [
+      "Automatic eligibility checking",
+      "Deadline reminders",
+      "Document checklist",
+      "Application tracking",
+      "Expert support",
+    ],
+  },
+  {
+    title: "For Housing",
+    items: [
+      "Budget and location preferences",
+      "Verified student housing",
+      "Direct landlord contact",
+      "Viewing scheduling",
+      "Contract support",
+    ],
+  },
+  {
+    title: "For Roommates",
+    items: [
+      "Personality matching",
+      "Lifestyle preferences",
+      "Study schedule compatibility",
+      "Group chat features",
+      "Safe verification",
+    ],
+  },
+];
+
 
 const HowItWorks = () => {
-  const steps = [
-    {
-      icon: UserPlus,
-      title: "Create Your Profile",
-      description:
-        "Sign up and tell us about your situation - study status, income, housing needs, and preferences.",
-      time: "2 minutes",
-    },
-    {
-      icon: FileSearch,
-      title: "Get Matched",
-      description:
-        "Our system analyzes your profile and finds all bonuses, housing options, and potential roommates that match you.",
-      time: "Instant",
-    },
-    {
-      icon: Upload,
-      title: "Upload Documents",
-      description:
-        "Securely upload your required documents. We guide you through exactly what you need for each application.",
-      time: "5-10 minutes",
-    },
-    {
-      icon: CheckCircle,
-      title: "Receive Support",
-      description:
-        "Track your applications, get expert help, and receive notifications about your bonuses and housing matches.",
-      time: "Ongoing",
-    },
-  ];
-
-  const features = [
-    {
-      title: "For Bonuses",
-      items: [
-        "Automatic eligibility checking",
-        "Deadline reminders",
-        "Document checklist",
-        "Application tracking",
-        "Expert support",
-      ],
-    },
-    {
-      title: "For Housing",
-      items: [
-        "Budget and location preferences",
-        "Verified student housing",
-        "Direct landlord contact",
-        "Viewing scheduling",
-        "Contract support",
-      ],
-    },
-    {
-      title: "For Roommates",
-      items: [
-        "Personality matching",
-        "Lifestyle preferences",
-        "Study schedule compatibility",
-        "Group chat features",
-        "Safe verification",
-      ],
-    },
-  ];
+  const rows = usePageRows();
 
   return (
-    <div className="min-h-screen">
-      <Navbar />
+    <PageShell>
+      <PageHeader
+        media={<HeaderBanner name="how-it-works" stillToggle />}
+        eyebrow="Guide"
+        title="How Care4Students Works"
+        lead="Getting support for your student life has never been easier. Follow these simple steps to unlock all available opportunities."
+      />
 
-      {/* Header */}
-      <section className="gradient-hero py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="mb-6 text-4xl font-bold text-primary-foreground md:text-5xl">
-            How Care4Students Works
-          </h1>
-          <p className="mx-auto max-w-2xl text-lg text-primary-foreground/90">
-            Getting support for your student life has never been easier. Follow these simple steps
-            to unlock all available opportunities.
-          </p>
-        </div>
-      </section>
-
-      {/* Steps */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid gap-12">
-            {steps.map((step, index) => (
-              <div
-                key={index}
-                className="grid items-center gap-8 lg:grid-cols-2"
-                style={{
-                  flexDirection: index % 2 === 1 ? "row-reverse" : "row",
-                }}
-              >
-                <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                  <div className="mb-4 flex items-center gap-4">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                      <step.icon className="h-8 w-8 text-primary" />
-                    </div>
-                    <div className="rounded-lg bg-primary/10 px-4 py-2">
-                      <span className="text-sm font-semibold text-primary">{step.time}</span>
-                    </div>
-                  </div>
-                  <h3 className="mb-4 text-3xl font-bold text-foreground">
-                    {index + 1}. {step.title}
-                  </h3>
-                  <p className="text-lg text-muted-foreground">{step.description}</p>
-                </div>
-                <Card className={`border-2 ${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                  <CardContent className="flex h-64 items-center justify-center p-8">
-                    <step.icon className="h-32 w-32 text-primary/20" />
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
+      <div ref={rows}>
+        <section className="clip-x" style={{ paddingBlock: "var(--section-y)" }}>
+          <div className="shell-x">
+            <ol className="counter-list border-b">
+              {steps.map((step, i) => (
+                <li
+                  key={step.title}
+                  className="row-rule grid grid-cols-[2.5rem_1fr_auto] items-baseline gap-x-4 gap-y-2 py-6 md:grid-cols-12 md:gap-x-6 md:py-9"
+                >
+                  <h2 className="col-start-2 text-2xl font-bold leading-tight text-foreground md:col-span-3 md:col-start-2 md:row-start-1 md:text-3xl">
+                    {step.title}
+                  </h2>
+                  <p className="t-stat tnum col-start-2 text-primary-text md:col-span-2 md:col-start-9 md:row-start-1 md:text-right">
+                    {step.time}
+                  </p>
+                  <p className="col-start-2 max-w-[52ch] text-ink-2 md:col-span-4 md:col-start-5 md:row-start-1 md:max-w-none">
+                    {step.description}
+                  </p>
+                  <MediaLoop
+                    src={asset(`/media/cards/${step.card}`)}
+                    width={480}
+                    height={360}
+                    maxWidth={240}
+                    mode="once"
+                    index={i}
+                    className="col-start-3 row-span-3 row-start-1 hidden w-24 self-center min-[360px]:block md:col-span-2 md:col-start-11 md:row-span-1 md:w-auto md:self-start"
+                  />
+                </li>
+              ))}
+            </ol>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Features Breakdown */}
-      <section className="gradient-subtle py-20">
-        <div className="container mx-auto px-4">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
-              What You Get With Each Service
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Comprehensive support across all aspects of student life
-            </p>
-          </div>
-          <div className="grid gap-8 md:grid-cols-3">
-            {features.map((feature, index) => (
-              <Card key={index} className="border-2 transition-smooth hover:border-primary">
-                <CardContent className="p-8">
-                  <h3 className="mb-6 text-2xl font-bold text-foreground">{feature.title}</h3>
-                  <ul className="space-y-3">
-                    {feature.items.map((item, itemIndex) => (
-                      <li key={itemIndex} className="flex items-start gap-3">
-                        <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-primary" />
-                        <span className="text-muted-foreground">{item}</span>
+        <section className="clip-x rule" style={{ paddingBlock: "var(--section-y)" }}>
+          <div className="shell-x">
+            <div className="mb-8 md:mb-12">
+              <h2 className="t-display mb-4 text-[clamp(1.75rem,4vw,3.5rem)]">What You Get With Each Service</h2>
+              <p className="t-lead max-w-[46ch] text-ink-2">Comprehensive support across all aspects of student life</p>
+            </div>
+            <div className="grid gap-x-6 md:grid-cols-3">
+              {features.map((feature) => (
+                <Fold key={feature.title} summary={<h3 className="inline text-lg font-bold md:text-2xl">{feature.title}</h3>} openFrom={768}>
+                  <ul className="pb-4 md:pb-8">
+                    {feature.items.map((item) => (
+                      <li key={item} className="border-t py-3 text-ink-2">
+                        {item}
                       </li>
                     ))}
                   </ul>
-                </CardContent>
-              </Card>
-            ))}
+                </Fold>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
-      {/* CTA */}
-      <section className="gradient-primary py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="mb-6 text-3xl font-bold text-primary-foreground md:text-4xl">
-            Ready to Get Started?
-          </h2>
-          <p className="mb-8 text-lg text-primary-foreground/90">
-            Join thousands of students who are already benefiting from our platform.
-          </p>
-          <Button variant="hero" size="lg" asChild className="bg-secondary hover:bg-secondary-light">
-            <Link to="/dashboard">
-              Create Your Free Profile <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
+      <ClosingBand
+        title="Ready to Get Started?"
+        action={
+          <Button variant="warm" size="lg" asChild>
+            <AuthCta>Create Your Free Profile</AuthCta>
           </Button>
-        </div>
-      </section>
-
-      <Footer />
-    </div>
+        }
+      >
+        Join thousands of students who are already benefiting from our platform.
+      </ClosingBand>
+    </PageShell>
   );
 };
 

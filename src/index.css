@@ -1,193 +1,560 @@
-@import "@fontsource/manrope/400.css";
-@import "@fontsource/manrope/500.css";
-@import "@fontsource/manrope/600.css";
-@import "@fontsource/manrope/700.css";
+/* Bright Ledger tokens. Source of truth: DESIGN.md / design.json. Every colour is a closed-palette
+   triplet that round-trips to its hex (DESIGN.md, "Tokens in CSS"). No dark theme: nothing sets .dark. */
+
+/* Fonts are self-hosted from /public/fonts so the preload URL in index.html and this URL are the same. */
+@font-face { font-family: "Plus Jakarta Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/plus-jakarta-sans-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-style: normal; font-weight: 500; font-display: swap; src: url("/fonts/plus-jakarta-sans-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-style: normal; font-weight: 600; font-display: swap; src: url("/fonts/plus-jakarta-sans-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-style: normal; font-weight: 700; font-display: swap; src: url("/fonts/plus-jakarta-sans-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-style: normal; font-weight: 800; font-display: swap; src: url("/fonts/plus-jakarta-sans-latin-800-normal.woff2") format("woff2"); }
+@font-face { font-family: "Instrument Serif"; font-style: italic; font-weight: 400; font-display: swap; src: url("/fonts/instrument-serif-latin-400-italic.woff2") format("woff2"); }
+
+/* Size-adjusted local fallbacks (DESIGN.md, Loading). Windows Arial and Georgia measured; Roboto named, not measured. */
+@font-face { font-family: "Jakarta Fallback"; font-weight: 600 800;
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Roboto Bold");
+  size-adjust: 105%; ascent-override: 98.9%; descent-override: 21.1%; line-gap-override: 0%; }
+@font-face { font-family: "Jakarta Fallback"; font-weight: 400 500;
+  src: local("Arial"), local("ArialMT"), local("Roboto");
+  size-adjust: 104.2%; ascent-override: 99.6%; descent-override: 21.3%; line-gap-override: 0%; }
+@font-face { font-family: "Serif Fallback"; font-style: italic;
+  src: local("Georgia Italic"), local("Georgia-Italic");
+  size-adjust: 77.4%; ascent-override: 127.9%; descent-override: 40.1%; line-gap-override: 0%; }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Design system tokens — all colors in HSL */
-
 @layer base {
   :root {
-    --background: 210 20% 99%;
-    --foreground: 220 20% 14%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 220 20% 14%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 14%;
-
+    /* The closed palette */
+    --canvas: 60 14% 96%;
+    --surface: 0 0% 100%;
+    --ink: 210 29% 22%;
+    --ink-2: 207.7 12.5% 40.8%;
+    --line: 210 11.8% 86.7%;
     --primary: 185 78% 42%;
-    --primary-foreground: 0 0% 100%;
+    --primary-text: 185.5 81.1% 29%;
+    --depth: 195 40% 32%;
+    --deep: 195 55% 13%;
+    --on-deep-muted: 198 18% 71%;
+    --line-deep: 196.4 33.3% 25.9%;
+    --warm: 44.9 92.7% 52%;
+    --warm-ink: 46.6 100% 11.4%;
+    --mint: 174.5 79.3% 56.5%;
+    --destructive: 3 71% 41%;
 
-    --secondary: 215 50% 18%;
-    --secondary-foreground: 0 0% 100%;
+    /* Focus ring colour: primary-text by default, warm on depth and deep grounds (data-ground). */
+    --focus: var(--primary-text);
 
-    --muted: 215 18% 96%;
-    --muted-foreground: 215 12% 48%;
+    /* shadcn mapping (DESIGN.md) */
+    --background: var(--canvas);
+    --foreground: var(--ink);
+    --card: var(--surface);
+    --card-foreground: var(--ink);
+    --popover: var(--surface);
+    --popover-foreground: var(--ink);
+    --primary-foreground: var(--ink);
+    --secondary: var(--depth);
+    --secondary-foreground: var(--canvas);
+    --muted: var(--canvas);
+    --muted-foreground: var(--ink-2);
+    --accent: var(--line);
+    --accent-foreground: var(--ink);
+    --destructive-foreground: var(--canvas);
+    --border: var(--line);
+    --input: var(--ink-2);
+    --ring: var(--primary-text);
+    --radius: 0.25rem;
 
-    --accent: 185 65% 94%;
-    --accent-foreground: 185 75% 28%;
+    --sidebar-background: var(--surface);
+    --sidebar-foreground: var(--ink);
+    --sidebar-primary: var(--primary);
+    --sidebar-primary-foreground: var(--ink);
+    --sidebar-accent: var(--canvas);
+    --sidebar-accent-foreground: var(--ink);
+    --sidebar-border: var(--line);
+    --sidebar-ring: var(--primary-text);
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    /* Motion tokens */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --dur-micro: 150ms;
+    --dur-press: 120ms;
+    --dur-move: 400ms;
+    --dur-scene: 800ms;
+    --transition-smooth: all var(--dur-micro) var(--ease-out);
 
-    --border: 215 15% 90%;
-    --input: 215 15% 90%;
-    --ring: 185 78% 42%;
-
-    --radius: 0.75rem;
-
-    --teal: 185 78% 42%;
-    --teal-light: 185 65% 94%;
-    --navy: 215 50% 18%;
-    --navy-light: 215 40% 30%;
-
-    --gradient-hero: linear-gradient(135deg, hsl(185 55% 76%) 0%, hsl(215 35% 46%) 100%);
-    --gradient-hero-start: 185 55% 76%;
-    --gradient-hero-to-bg: linear-gradient(180deg, hsl(var(--gradient-hero-start)) 0%, hsl(210 20% 99%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(185 55% 92%) 0%, hsl(210 15% 99%) 100%);
-    --gradient-primary: linear-gradient(135deg, hsl(185 78% 42%), hsl(185 65% 60%));
-
-    --shadow-card: 0 1px 3px hsl(220 20% 14% / 0.03), 0 4px 24px -4px hsl(220 20% 14% / 0.07);
-    --shadow-card-hover: 0 2px 8px hsl(220 20% 14% / 0.05), 0 16px 48px -8px hsl(220 20% 14% / 0.12);
-    --shadow-button: 0 4px 16px -4px hsl(185 78% 42% / 0.35);
-    --shadow-glow: 0 0 24px hsl(185 78% 42% / 0.3);
-
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Layout tokens */
+    --gutter: clamp(16px, 2.8vw, 40px);
+    --nav-h: 56px;
+    --tab-h: 0px;
+    --section-y: 48px;
   }
 
-  .dark {
-    --background: 216 40% 10%;
-    --foreground: 0 0% 98%;
-
-    --card: 216 40% 13%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 216 40% 13%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 185 78% 42%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 215 50% 25%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 216 30% 20%;
-    --muted-foreground: 215 15% 65%;
-
-    --accent: 185 50% 20%;
-    --accent-foreground: 185 65% 80%;
-
-    --destructive: 0 62.8% 50%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 216 30% 20%;
-    --input: 216 30% 20%;
-    --ring: 185 78% 42%;
-
-    --gradient-hero: linear-gradient(135deg, hsl(185 55% 50%) 0%, hsl(215 50% 18%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(216 40% 13%), hsl(216 40% 10%));
-    --gradient-primary: linear-gradient(135deg, hsl(185 78% 42%), hsl(185 65% 60%));
-
-    --shadow-card: 0 1px 3px hsl(0 0% 0% / 0.2), 0 4px 24px -4px hsl(0 0% 0% / 0.35);
-    --shadow-card-hover: 0 2px 8px hsl(0 0% 0% / 0.3), 0 16px 48px -8px hsl(0 0% 0% / 0.5);
-    --shadow-glow: 0 0 24px hsl(185 78% 42% / 0.4);
-
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+  @media (min-width: 768px) {
+    :root {
+      --nav-h: 72px;
+      --section-y: clamp(5rem, 10vh, 9rem);
+    }
   }
-}
 
-@layer base {
+  [data-ground="depth"],
+  [data-ground="deep"] {
+    --focus: var(--warm);
+  }
+
   * {
     @apply border-border;
   }
 
   html {
-    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+    line-height: 1.5;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight text-foreground;
+    @apply text-foreground;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--focus));
+    outline-offset: 2px;
+  }
+
+  /* Lenis recommended styles */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: clip; }
+
+  @media (forced-colors: active) {
+    :focus-visible { outline-color: Highlight; }
+  }
+}
+
+@layer components {
+  /* Typography roles. Sizes come from DESIGN.md (the ramp), computed there for 320 / 390 / 1280 / 1440. */
+  .t-hero {
+    font-weight: 800;
+    font-size: clamp(3.25rem, 18vw, 5.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    overflow-wrap: anywhere;
+  }
+  @media (min-width: 768px) {
+    /* Short-viewport guard 23svh, the largest whole value that keeps the stat strip on the first screen at
+       1280x720, 1366x650 and 1280x650 (measured, fix phase); 12vw binds from 720 px tall up. */
+    .t-hero { font-size: clamp(3.25rem, min(12vw, 23svh), 12.5rem); }
+  }
+  .t-page-h1 { font-weight: 800; font-size: clamp(2.25rem, 11vw, 5.5rem); line-height: 0.95; letter-spacing: -0.03em; }
+  .t-display { font-weight: 800; font-size: clamp(2.25rem, 5.5vw, 5.5rem); line-height: 0.95; letter-spacing: -0.03em; }
+  .t-ledger-figure {
+    font-weight: 800; font-variant-numeric: tabular-nums; line-height: 0.9; letter-spacing: -0.04em;
+    font-size: clamp(3.5rem, 21vw, 9rem);
+  }
+  @media (min-width: 768px) { .t-ledger-figure { font-size: clamp(5rem, 11vw, 11rem); } }
+  .t-row-amount {
+    font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; letter-spacing: -0.02em;
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+  }
+  @media (min-width: 768px) { .t-row-amount { font-size: clamp(2rem, min(4.2vw, 7svh), 3.5rem); } }
+  .t-stat { font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1; letter-spacing: -0.02em; font-size: clamp(2rem, 3vw, 3rem); }
+  .t-footer-wordmark {
+    font-weight: 800; line-height: 0.85; letter-spacing: -0.04em; overflow-wrap: anywhere;
+    font-size: clamp(2.5rem, 12.6vw, 12.6rem);
+  }
+  .t-lead { font-size: clamp(1.125rem, 1.2vw, 1.375rem); line-height: 1.5; }
+  .t-pull-quote {
+    font-family: "Instrument Serif", "Serif Fallback", Georgia, serif; font-style: italic; font-weight: 400;
+    font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem); line-height: 1.35;
+  }
+  .t-row-name { font-size: 1.0625rem; font-weight: 600; line-height: 1.3; }
+  .t-meta { font-size: 0.875rem; line-height: 1.5; }
+  .t-eyebrow { font-size: 0.75rem; font-weight: 700; line-height: 1.3; letter-spacing: 0.14em; text-transform: uppercase; }
+  .t-nav-link { font-size: 0.9375rem; font-weight: 500; line-height: 1; }
+  .t-serif {
+    font-family: "Instrument Serif", "Serif Fallback", Georgia, serif; font-style: italic; font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  /* The name beside the mark is visually hidden at 768-899 px so six links and two buttons hold one line. */
+  @media (min-width: 768px) and (max-width: 899.98px) {
+    .nav-name { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+  }
+  .tnum { font-variant-numeric: tabular-nums; }
+
+  /* Press: scale(.97) from the centre in 120 ms on the token ease. A CSS transition, so a second press retargets from
+     wherever the first got to. Reduced motion keeps the feedback as a dip in opacity, not as movement. */
+  .press {
+    transition: transform var(--dur-press) var(--ease-out), background-color var(--dur-press) var(--ease-out),
+      color var(--dur-press) var(--ease-out), border-color var(--dur-press) var(--ease-out), opacity var(--dur-press) var(--ease-out);
+    transform-origin: center;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .press:active { transform: scale(0.97); }
+  @media (prefers-reduced-motion: reduce) {
+    .press { transition: opacity var(--dur-press) linear; }
+    .press:active { transform: none; opacity: 0.85; }
+  }
+
+  /* The one rule: everything hangs off a hairline. */
+  .rule { border-top: 1px solid hsl(var(--line)); }
+  .rule-deep { border-top: 1px solid hsl(var(--line-deep)); }
+
+  /* Page frame: content to 1600 px inside the gutter, rules still go full bleed on the parent. */
+  .shell-x { width: 100%; max-width: 1600px; margin-inline: auto; padding-inline: var(--gutter); }
+
+  /* Line mask: descender-safe at rest (DESIGN.md, Masks). The padding keeps "g" and "pp" whole, the negative margins
+     hand the room back so line-height 0.9 still stacks tight. Inline padding is for serif italic overhang. */
+  .mask-line { display: block; overflow: clip; padding-bottom: 0.25em; margin-bottom: -0.25em; padding-inline: 0.08em; margin-inline: -0.08em; }
+
+  /* A numbered ledger list: the numbers are CSS counters, not copy. */
+  .counter-list { counter-reset: ledger-item; }
+  .counter-list > li::before {
+    counter-increment: ledger-item; content: counter(ledger-item, decimal-leading-zero);
+    font-variant-numeric: tabular-nums; font-weight: 700; font-size: 0.875rem; line-height: 1.5;
+    position: static; height: auto; background: none;
+  }
+
+  /* Hairline row. The rule is a pseudo-element that draws by transform through --rule-draw; the 2 px hover sweep is its
+     sibling. Numbered rows have no sweep and need ::before for the counter, so their rule rides on ::after. */
+  .row-rule { position: relative; --rule: var(--line); --rule-hover: var(--ink); }
+  [data-ground="deep"] .row-rule { --rule: var(--line-deep); --rule-hover: var(--canvas); }
+  .row-rule::before, .row-rule::after {
+    content: ""; position: absolute; left: 0; right: 0; top: 0; transform-origin: left center; pointer-events: none;
+  }
+  .row-rule::before { height: 1px; background: hsl(var(--rule)); transform: scaleX(var(--rule-draw, 1)); }
+  /* Leaves fast on the token ease (150 ms); sweeps in on the one ease-in-out (400 ms). Both are transitions, so they retarget. */
+  .row-rule::after { height: 2px; background: hsl(var(--rule-hover)); transform: scaleX(0); transition: transform var(--dur-micro) var(--ease-out); }
+  .counter-list > .row-rule::before { transform: none; }
+  .counter-list > .row-rule::after { height: 1px; background: hsl(var(--rule)); transform: scaleX(var(--rule-draw, 1)); transition: none; }
+  @media (hover: hover) {
+    a.row-rule:hover::after, .row-rule:has(> h3:hover)::after {
+      transform: scaleX(1); transition: transform var(--dur-move) var(--ease-in-out);
+    }
+  }
+  /* Touch has no hover: the press draws the rule, in the same 120 ms as every press. */
+  a.row-rule:active::after, label.row-rule:active::after, .row-rule:has(> h3 button:active)::after {
+    transform: scaleX(1); transition-duration: var(--dur-press);
+  }
+  @media (prefers-reduced-motion: reduce) { .row-rule::after { transition: none !important; } }
+  @media (forced-colors: active) { .row-rule::before, .row-rule::after { background: CanvasText; } }
+
+  /* From 1024 px the row carries the amount's size so its column is measured in em; the name and link restate theirs. */
+  @media (min-width: 1024px) { .ledger-row { font-size: clamp(2rem, min(4.2vw, 7svh), 3.5rem); } }
+
+  /* "/year" rides small beside the amount so the figure keeps its column. */
+  .amount-unit { font-size: 0.4em; font-weight: 700; letter-spacing: 0; margin-left: 0.15em; }
+
+  /* The Ledger's ink-wash plates sit under flat deep, by media query so a phone downloads only the tall one.
+     A missing plate is invisible. */
+  .ledger-plate { background-color: hsl(var(--deep)); background-size: cover; background-position: center; }
+  @media (max-width: 767.98px) { .ledger-plate { background-image: url("/media/ledger/plate-tall.webp"); } }
+  @media (min-width: 768px) { .ledger-plate { background-image: url("/media/ledger/plate-wide.webp"); } }
+
+  /* Folds: native details on ruled paper. The sign is two strokes; the vertical one lies down when open. */
+  .fold { border-top: 1px solid hsl(var(--line)); }
+  .fold-sign::before, .fold-sign::after { content: ""; position: absolute; background: currentColor; }
+  .fold-sign::before { left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; }
+  .fold-sign::after { top: 0; bottom: 0; left: 50%; width: 2px; margin-left: -1px; transition: transform var(--dur-micro) var(--ease-out); }
+  details[open] > summary .fold-sign::after { transform: scaleY(0); }
+  @media (prefers-reduced-motion: reduce) { .fold-sign::after { transition: none; } }
+  /* The summary is a row, so it answers with the rule too. It lives on the summary (always rendered), not the closed details. */
+  .fold > summary { position: relative; -webkit-tap-highlight-color: transparent; }
+  .fold > summary::after {
+    content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 2px; pointer-events: none;
+    background: hsl(var(--ink)); transform: scaleX(0); transform-origin: left center;
+    transition: transform var(--dur-micro) var(--ease-out);
+  }
+  [data-ground="deep"] .fold > summary::after { background: hsl(var(--canvas)); }
+  @media (hover: hover) {
+    .fold > summary:hover::after { transform: scaleX(1); transition: transform var(--dur-move) var(--ease-in-out); }
+  }
+  .fold > summary:active::after { transform: scaleX(1); transition-duration: var(--dur-press); }
+  @media (prefers-reduced-motion: reduce) { .fold > summary::after { transition: none !important; } }
+  @media (forced-colors: active) { .fold > summary::after { background: CanvasText; } }
+
+  /* M4: a fold's height animates while a visitor toggles it (DESIGN.md amendment 2026-11-01). Open settles in 300 ms, close
+     leaves in 200 ms, on the token ease. Where ::details-content or interpolate-size is missing the rule is dropped and the
+     fold opens at once, as before. */
+  details.fold { interpolate-size: allow-keywords; }
+  .fold::details-content {
+    block-size: 0; overflow: clip;
+    transition: block-size 200ms var(--ease-out), content-visibility 200ms allow-discrete;
+  }
+  .fold[open]::details-content { block-size: auto; transition-duration: 300ms; }
+  @media (prefers-reduced-motion: reduce) { .fold::details-content { transition: none; } }
+
+  /* Framed media (DESIGN.md amendment 2026-11-01): a 1 px line, radius 0, no shadow. The border space is reserved from the
+     first render and only gets its colour once the poster has loaded, so a blocked file shows no box and nothing shifts. */
+  .media-frame, .media-still { box-sizing: border-box; border: 1px solid transparent; }
+  .media-frame { position: relative; overflow: clip; }
+  .media-frame[data-media="ok"], .media-still[data-media="ok"] { border-color: hsl(var(--line)); }
+  .media-frame[data-media="failed"] { display: none; }
+  /* A banner that failed takes its slot, and the control that stops it, with it: the header is as built. */
+  .banner-slot:has(> div > .media-frame[data-media="failed"]) { display: none; }
+  .media-frame > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  /* 1 px inside the poster on every side, so the clip is never the larger picture: an equal or larger <video> would take
+     over as the page's LCP element. The poster is the same frame, so the 1 px rim is invisible. */
+  .media-frame > video {
+    position: absolute; inset: 1px; width: calc(100% - 2px); height: calc(100% - 2px); object-fit: cover; opacity: 0;
+    transition: opacity var(--dur-micro) var(--ease-out);
+  }
+  .media-frame[data-playing] > video { opacity: 1; }
+  @media (forced-colors: active) {
+    .media-frame[data-media="ok"], .media-still[data-media="ok"] { border-color: CanvasText; }
+  }
+  @media print { .media-frame > video { display: none; } }
+
+  /* The hero desk (build plan, "Hero pass"). The stage is a layout box and never a stacking context, so the panel (z 10) can sit
+     between the poster and video (inside .hero-media) and the dragonfly (.hero-mark-frame, z 20). Its size comes from the grid. */
+  .hero-desk-layout { --hero-size: clamp(3.25rem, min(12vw, 23svh), 12.5rem); }
+  .hero-stage { position: relative; overflow: clip; z-index: auto; }
+  .hero-media, .hero-mark-frame { position: absolute; inset: 0; container-type: size; }
+  .hero-media picture, .hero-media img { display: block; width: 100%; height: 100%; }
+  .hero-media img { object-fit: cover; object-position: 50% 50%; }
+  .hero-media > video {
+    position: absolute; inset: 1px; width: calc(100% - 2px); height: calc(100% - 2px); object-fit: cover; opacity: 0;
+    transition: opacity var(--dur-micro) var(--ease-out);
+  }
+  .hero-stage[data-desk="video"] .hero-media > video { opacity: 1; }
+  .hero-stage[data-media="failed"] { display: none; }
+  .hero-mark-frame { z-index: 20; pointer-events: none; }
+  /* The mark is placed on the notebook page by the cover transform of the 960 px square (the phone still is 780 x 360). */
+  .hero-pos {
+    --cw: max(100cqw, 100cqh);
+    --ch: var(--cw);
+    --u: var(--lu);
+    --v: var(--lv);
+    position: absolute; width: 0; height: 0; will-change: transform;
+    left: calc(50cqw + (var(--u) - 0.5) * var(--cw));
+    top: calc(50cqh + (var(--v) - 0.5) * var(--ch));
+  }
+  .hero-mark { --mark: clamp(80px, 9vw, 112px); position: absolute; left: calc(var(--mark) / -2); top: calc(var(--mark) / -2); width: var(--mark); }
+
+  /* Phones: a full-bleed strip under the words, its own camera (A54), the mark on its notebook page. */
+  @media (max-width: 767.98px) {
+    .hero-stage { margin: 12px calc(var(--gutter) * -1) 0; height: clamp(160px, 47vw, 200px); }
+    .hero-pos {
+      --cw: max(100cqw, calc(100cqh * 2.1666667));
+      --ch: calc(var(--cw) / 2.1666667);
+      --u: var(--pu);
+      --v: var(--pv);
+    }
+    .hero-mark { --mark: clamp(80px, 24vw, 104px); }
+    /* The strip is gone when its poster fails; the hero then ends after the CTAs instead of holding a blank band to the stat strip (hero-fix, D3). */
+    .hero-desk-layout:has([data-hero-desk][data-media="failed"]) { min-height: 0 !important; }
+  }
+  /* 768-1279: the stacked layout, the square in columns 8-12, poster only. */
+  @media (min-width: 768px) {
+    .hero-stage { grid-column: 8 / span 5; grid-row: 1; align-self: end; justify-self: start; width: min(34vw, calc(100svh - 372px)); aspect-ratio: 1; }
+  }
+  /* 1280 and up: the desk bleeds through the right gutter, the lead and CTAs sit on an opaque panel over it. */
+  @media (min-width: 1280px) {
+    .hero-stage {
+      position: absolute; grid-column: 1 / -1; grid-row: 1 / -1; align-self: stretch; justify-self: stretch; top: 0; bottom: -1rem; right: calc(var(--gutter) * -1); width: auto; aspect-ratio: auto;
+      left: max(calc(50% + 36px), calc(4.2 * var(--hero-size) + 24px));
+    }
+    /* The ground of the clip is one step off canvas after YUV conversion: the edge that meets the page is feathered. The mask
+       sits on the media only, so the mark (a sibling) stays above the panel. */
+    .hero-media { -webkit-mask-image: linear-gradient(to right, transparent, #000 48px); mask-image: linear-gradient(to right, transparent, #000 48px); }
+    .hero-mark { --mark: clamp(112px, 9vw, 160px); }
+    .hero-panel {
+      grid-column: 9 / span 4; grid-row: 2 / span 2; align-self: end; position: relative; z-index: 10;
+      margin-left: -24px; padding: 20px var(--gutter) 0 24px; margin-right: calc(var(--gutter) * -1);
+      background: hsl(var(--background));
+    }
+    .hero-panel > p { margin-top: 0; }
+    .hero-panel > div { margin-top: 14px; }
+  }
+  @media (max-width: 1279.98px) { .hero-panel { display: contents; } }
+  @media (forced-colors: active) { .hero-panel { background: Canvas; } }
+  @media print { .hero-media > video { display: none; } }
+
+  /* Plain-text tags separated by hairlines, in place of chips. */
+  .tag-rules { display: flex; flex-wrap: wrap; row-gap: 0.25rem; }
+  .tag-rules > li { padding-inline: 0.75rem; border-left: 1px solid hsl(var(--line)); line-height: 1.25; }
+  .tag-rules > li:first-child { padding-left: 0; border-left: 0; }
+
+  /* The personal ledger (DESIGN.md, Gamification). Native checkboxes; forced colours give the native one back. */
+  .ledger-toggle { display: flex; align-items: center; gap: 1rem; min-height: 3rem; padding-block: 0.5rem; cursor: pointer; }
+  [data-ground="deep"] .ledger-toggles { border-color: hsl(var(--line-deep)); }
+  @media (hover: hover) {
+    label.row-rule:hover::after { transform: scaleX(1); transition: transform var(--dur-move) var(--ease-in-out); }
+    label:hover > .ledger-box input:not(:checked) { border-color: hsl(var(--ink)); }
+    [data-ground="deep"] label:hover > .ledger-box input:not(:checked) { border-color: hsl(var(--canvas)); }
+  }
+
+  .ledger-box { position: relative; display: inline-flex; width: 1.5rem; height: 1.5rem; flex-shrink: 0; }
+  .ledger-box input {
+    appearance: none; width: 100%; height: 100%; margin: 0; cursor: pointer; border-radius: 4px;
+    border: 2px solid hsl(var(--ink-2)); background: transparent;
+  }
+  .ledger-box input:checked { background: hsl(var(--warm)); border-color: hsl(var(--ink)); }
+  [data-ground="deep"] .ledger-box input { border-color: hsl(var(--on-deep-muted)); }
+  [data-ground="deep"] .ledger-box input:checked { border-color: hsl(var(--warm)); }
+
+  .ledger-tick { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .ledger-tick path {
+    stroke: hsl(var(--warm-ink)); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 1 1.1; stroke-dashoffset: 1.01;
+  }
+  input:checked + .ledger-tick path, [data-on="true"] .ledger-tick path { stroke-dashoffset: 0; }
+
+  .ledger-note { color: hsl(var(--ink-2)); }
+  [data-ground="deep"] .ledger-note { color: hsl(var(--on-deep-muted)); }
+  .ledger-clear { min-height: 2.75rem; touch-action: manipulation; font-size: 0.875rem; color: hsl(var(--primary-text)); text-decoration: underline; text-underline-offset: 0.25em; }
+  [data-ground="deep"] .ledger-clear { color: hsl(var(--canvas)); }
+
+  .ledger-mark { display: inline-flex; align-items: center; gap: 0.5rem; color: hsl(var(--ink)); }
+  .ledger-mark[data-on="false"] { visibility: hidden; }
+  .ledger-box-mark { width: 1.25rem; height: 1.25rem; border-radius: 4px; border: 1px solid hsl(var(--ink)); background: hsl(var(--warm)); }
+
+  /* Unwritten rows sort after the written ones and hold their slots from 768 px, as blank lines: the rule shows, the words do
+     not. Phones collapse them. */
+  .written-rows { display: flex; flex-direction: column; }
+  .written-row { --rule-draw: 1; display: grid; gap: 0.25rem; padding-block: 1rem; }
+  .written-row[data-written="false"] > * { opacity: 0; transform: translateY(0.5em); }
+  @media (max-width: 767.98px) { .written-row[data-written="false"] { display: none; --rule-draw: 0; visibility: hidden; } }
+  @media (min-width: 1024px) {
+    .written-row { font-size: clamp(2rem, min(4.2vw, 7svh), 3.5rem); grid-template-columns: 6em minmax(0, 1fr); align-items: center; column-gap: 1.5rem; padding-block: 0.5rem; }
+  }
+
+  /* One rule per form line, a tick at the end of each. Empty is decorative: the text carries the state. */
+  .signup-line { position: relative; flex: 1; height: 0.5rem; border-right: 1px solid hsl(var(--ink-2)); }
+  .signup-line::before, .signup-line::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; }
+  .signup-line::before { height: 1px; background: hsl(var(--line)); }
+  .signup-line::after { height: 2px; background: hsl(var(--ink)); transform: scaleX(0); transform-origin: left center; }
+  .signup-line[data-done="true"]::after { transform: scaleX(1); }
+
+  @media (forced-colors: active) {
+    .ledger-box input { appearance: auto; }
+    .ledger-tick { display: none; }
+    .signup-line::before, .signup-line::after { background: CanvasText; }
+  }
+
+  /* Hover only where hover exists: underline, never a colour change. */
+  @media (hover: hover) {
+    .link-underline:hover { text-decoration: underline; text-underline-offset: 0.25em; }
   }
 }
 
 @layer utilities {
-  .gradient-primary {
-    background: var(--gradient-primary);
+  .transition-smooth { transition: var(--transition-smooth); }
+
+  /* Dashboard figures are set in text-primary (2.60 on white); point the utility at primary-text (5.00). */
+  html .text-primary { color: hsl(var(--primary-text)); }
+
+  /* Use overflow-x: clip on sections, never hidden on html/body (it breaks pinning). */
+  .clip-x { overflow-x: clip; }
+
+  .sr-only-focusable:not(:focus):not(:focus-within) {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+}
+
+@media print {
+  nav, [data-tabbar] { display: none !important; }
+}
+
+/* Home beats 1, 3, 6 and the stacked Ledger (DESIGN.md, Motion). Hidden states exist only with motion allowed, and only
+   the JS sets them, except the hero's: its words are readable from the first frame, sitting .06em low. */
+[data-stat-rule] { transform: scaleX(var(--rule-settle, 1)); }
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-settle="wait"] [data-hero-word] { transform: translateY(0.06em); }
+  [data-settle="wait"] [data-stat-rule] { transform: scaleX(0); }
+  [data-settle="run"] [data-hero-word] { transition: transform var(--dur-scene) var(--ease-out) calc(var(--i, 0) * 60ms); }
+  [data-settle="run"] [data-stat-rule] { transition: transform var(--dur-scene) var(--ease-out); }
+
+  .counter-list > [data-reveal="pending"], .ledger-row[data-reveal="pending"] { --rule-draw: 0; }
+  .counter-list > [data-reveal="done"]::after, .ledger-row[data-reveal="done"]::before {
+    transition: transform var(--dur-move) var(--ease-out) calc(var(--i, 0) * 60ms);
   }
 
-  .gradient-hero {
-    background: var(--gradient-hero);
+  [data-rule-row][data-reveal="pending"] { --rule-draw: 0; }
+  [data-rule-row][data-reveal="done"]::before { transition: transform var(--dur-move) var(--ease-out) calc(var(--i, 0) * 60ms); }
+
+  .ledger-row[data-reveal="pending"] > * { opacity: 0; transform: translateY(0.5em); }
+  .ledger-row[data-reveal="done"] > * {
+    transition: opacity 300ms var(--ease-out), transform 300ms var(--ease-out);
+    transition-delay: calc(var(--i, 0) * 60ms + var(--dur-move));
   }
 
-  .gradient-hero-to-bg {
-    background: var(--gradient-hero-to-bg);
+  /* Beat 5. Everything is a transition, so rapid ticking retargets. data-ledger-live exists only after the visitor's own
+     tick and with animations on, so a restored ledger is simply there. */
+  .ledger-box input { transition: transform var(--dur-press) var(--ease-out); touch-action: manipulation; }
+  label:active > .ledger-box input { transform: scale(0.97); }
+  [data-ledger-live] .ledger-tick path { transition: stroke-dashoffset var(--dur-micro) var(--ease-out); }
+  [data-ledger-live] .ledger-box input {
+    transition: transform var(--dur-press) var(--ease-out), background-color var(--dur-micro) var(--ease-out),
+      border-color var(--dur-micro) var(--ease-out);
+  }
+  .signup-line::after { transition: transform var(--dur-move) var(--ease-out); }
+
+  [data-ledger-live] .written-row[data-written="true"]::before { transition: transform var(--dur-move) var(--ease-out); }
+  [data-ledger-live] .written-row[data-written="true"] > * {
+    transition: opacity 300ms var(--ease-out) var(--dur-move), transform 300ms var(--ease-out) var(--dur-move);
+  }
+  [data-ledger-live] .written-row[data-written="false"] {
+    transition: display 0s linear var(--dur-micro) allow-discrete, visibility 0s linear var(--dur-micro), order 0s linear var(--dur-micro);
+  }
+  /* M5: the five blank lines draw once, when the section enters (revealOnce, from 768 px). */
+  .written-row[data-reveal="pending"] { --rule-draw: 0; }
+  .written-row[data-reveal="done"]::before { transition: transform var(--dur-move) var(--ease-out) calc(var(--i, 0) * 60ms); }
+  [data-ledger-live] .written-row[data-written="false"] > * {
+    transition: opacity var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+  }
+  /* Phones bring a row back from display: none, which has no before-state of its own. */
+  @starting-style {
+    [data-ledger-live] .written-row[data-written="true"]::before { transform: scaleX(0); }
+    [data-ledger-live] .written-row[data-written="true"] > * { opacity: 0; transform: translateY(0.5em); }
   }
 
-  .gradient-subtle {
-    background: var(--gradient-subtle);
+  /* M6: the mark lands with the words. The wrapper moves, never the img the scrub fades. */
+  [data-settle="wait"] [data-hero-mark] { transform: translate3d(0, 2.5vw, 0) rotate(-2deg); opacity: 0.6; }
+  [data-settle="run"] [data-hero-mark] {
+    transition: transform var(--dur-scene) var(--ease-out) 180ms, opacity var(--dur-scene) var(--ease-out) 180ms;
   }
 
-  .shadow-card {
-    box-shadow: var(--shadow-card);
+  [data-why-row][data-reveal] path[data-check] { stroke-dasharray: 1 1.1; }
+  [data-why-row][data-reveal="pending"] path[data-check] { stroke-dashoffset: 1.01; }
+  [data-why-row][data-reveal="done"] path[data-check] {
+    transition: stroke-dashoffset var(--dur-move) var(--ease-out) calc(var(--i, 0) * 60ms);
   }
+}
 
-  .shadow-card-hover {
-    box-shadow: var(--shadow-card-hover);
+/* Print: everything revealed, whatever the scroll position. */
+@media print {
+  [data-hero-word], [data-stat-rule], [data-footer-line], .ledger-row > *, [data-ledger-line], [data-ledger-cta] {
+    transform: none !important; opacity: 1 !important;
   }
+  .ledger-row, .counter-list > li, [data-rule-row] { --rule-draw: 1 !important; }
+  path[data-check] { stroke-dashoffset: 0 !important; }
+  [data-ledger-ghost] { display: none !important; }
+}
 
-  .shadow-button {
-    box-shadow: var(--shadow-button);
-  }
-
-  .shadow-glow {
-    box-shadow: var(--shadow-glow);
-  }
-
-  .glass {
-    background: hsl(0 0% 100% / 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid hsl(0 0% 100% / 0.2);
-  }
-
-  .glass-dark {
-    background: hsl(213 50% 25% / 0.4);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid hsl(0 0% 100% / 0.1);
-  }
-
-  .transition-smooth {
-    transition: var(--transition-smooth);
-  }
-
-  .transition-bounce {
-    transition: var(--transition-bounce);
-  }
+/* Loader: the line-art mark draws once. Dash longer than any path, so offset alone reveals it. */
+@keyframes loader-draw {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+.loader-mark path {
+  stroke-dasharray: 1000;
+  animation: loader-draw var(--draw-ms, 1600ms) var(--ease-out) both;
+}
+/* The loader only exists after 300 ms. It comes in on opacity alone, so a route that lands just after it never flashes a hard
+   edge. It has no exit: Suspense unmounts the fallback the frame the page is ready, which is what a loader should do. */
+@keyframes loader-in { from { opacity: 0; } }
+.loader-in { animation: loader-in var(--dur-micro) var(--ease-out) both; }
+@media (prefers-reduced-motion: reduce) {
+  .loader-mark path { animation: none; stroke-dasharray: none; }
+  .loader-in { animation: none; }
 }

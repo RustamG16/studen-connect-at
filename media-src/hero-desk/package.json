@@ -1,0 +1,16 @@
+{
+  "name": "care4students-hero-desk",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Offline render of the hero desk (build plan, Hero pass). Never imported by the site.",
+  "scripts": {
+    "prep": "node prep-photos.mjs",
+    "render": "node render.mjs",
+    "encode": "node encode.mjs"
+  },
+  "dependencies": {
+    "sharp": "0.33.5",
+    "three": "0.160.0"
+  }
+}

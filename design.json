@@ -1,0 +1,1344 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-31T18:22:26.457Z",
+  "generatedFrom": "DESIGN.md, whose frontmatter is normative. Regenerate with node .olympus/relay/design-system.verify.mjs rather than hand-editing.",
+  "title": "Design System: Care4Students",
+  "northStar": "Bright Ledger",
+  "doctrine": {
+    "name": "convenium-design-kinetic",
+    "displayMax": "12-18vw",
+    "heroVw": {
+      "phone": 18,
+      "desktop": 12
+    }
+  },
+  "tokens": {
+    "colors": {
+      "canvas": "#f6f6f3",
+      "surface": "#ffffff",
+      "ink": "#283848",
+      "ink-2": "#5b6975",
+      "line": "#d9dde1",
+      "primary": "#18b1bf",
+      "primary-text": "#0e7b86",
+      "depth": "#316272",
+      "deep": "#0f2a33",
+      "on-deep-muted": "#a8bac2",
+      "line-deep": "#2c4c58",
+      "warm": "#f6bd13",
+      "warm-ink": "#3a2d00",
+      "mint": "#38e8d8",
+      "destructive": "#b3261e"
+    },
+    "typography": {
+      "hero-phone": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "clamp(3.25rem, 18vw, 5.5rem)",
+        "fontWeight": 800,
+        "lineHeight": 0.9,
+        "letterSpacing": "-0.04em"
+      },
+      "hero": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "clamp(3.25rem, min(12vw, 23svh), 12.5rem)",
+        "fontWeight": 800,
+        "lineHeight": 0.9,
+        "letterSpacing": "-0.04em"
+      },
+      "page-h1": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "clamp(2.25rem, 11vw, 5.5rem)",
+        "fontWeight": 800,
+        "lineHeight": 0.95,
+        "letterSpacing": "-0.03em"
+      },
+      "display": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "clamp(2.25rem, 5.5vw, 5.5rem)",
+        "fontWeight": 800,
+        "lineHeight": 0.95,
+        "letterSpacing": "-0.03em"
+      },
+      "serif-accent": {
+        "fontFamily": "Instrument Serif, Serif Fallback, Georgia, serif",
+        "fontSize": "1em",
+        "fontStyle": "italic",
+        "fontWeight": 400,
+        "lineHeight": "inherit",
+        "letterSpacing": "-0.01em"
+      },
+      "ledger-figure-phone": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "clamp(3.5rem, 21vw, 9rem)",
+        "fontWeight": 800,
+        "lineHeight": 0.9,
+        "letterSpacing": "-0.04em",
+        "fontVariantNumeric": "tabular-nums"
+      },
+      "ledger-figure": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "clamp(5rem, 11vw, 11rem)",
+        "fontWeight": 800,
+        "lineHeight": 0.9,
+        "letterSpacing": "-0.04em",
+        "fontVariantNumeric": "tabular-nums"
+      },
+      "row-amount-phone": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "clamp(1.75rem, 8vw, 2.25rem)",
+        "fontWeight": 700,
+        "lineHeight": 1,
+        "letterSpacing": "-0.02em",
+        "fontVariantNumeric": "tabular-nums"
+      },
+      "row-amount": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "clamp(2rem, min(4.2vw, 7svh), 3.5rem)",
+        "fontWeight": 700,
+        "lineHeight": 1,
+        "letterSpacing": "-0.02em",
+        "fontVariantNumeric": "tabular-nums"
+      },
+      "stat-figure": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "clamp(2rem, 3vw, 3rem)",
+        "fontWeight": 800,
+        "lineHeight": 1,
+        "letterSpacing": "-0.02em",
+        "fontVariantNumeric": "tabular-nums"
+      },
+      "footer-wordmark": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "clamp(2.5rem, 12.6vw, 12.6rem)",
+        "fontWeight": 800,
+        "lineHeight": 0.85,
+        "letterSpacing": "-0.04em"
+      },
+      "lead": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "clamp(1.125rem, 1.2vw, 1.375rem)",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "letterSpacing": "0"
+      },
+      "pull-quote": {
+        "fontFamily": "Instrument Serif, Serif Fallback, Georgia, serif",
+        "fontSize": "clamp(1.375rem, 1.1rem + 1vw, 1.75rem)",
+        "fontStyle": "italic",
+        "fontWeight": 400,
+        "lineHeight": 1.35,
+        "letterSpacing": "0"
+      },
+      "row-name": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "1.0625rem",
+        "fontWeight": 600,
+        "lineHeight": 1.3,
+        "letterSpacing": "0"
+      },
+      "body": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "clamp(1rem, 0.96rem + 0.2vw, 1.0625rem)",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "letterSpacing": "0"
+      },
+      "meta": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "0.875rem",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "letterSpacing": "0"
+      },
+      "label": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "0.75rem",
+        "fontWeight": 700,
+        "lineHeight": 1.3,
+        "letterSpacing": "0.14em",
+        "textTransform": "uppercase"
+      },
+      "button-label": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "1rem",
+        "fontWeight": 700,
+        "lineHeight": 1,
+        "letterSpacing": "0"
+      },
+      "nav-link": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "0.9375rem",
+        "fontWeight": 500,
+        "lineHeight": 1,
+        "letterSpacing": "0"
+      },
+      "input": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "1rem",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "letterSpacing": "0"
+      },
+      "tab-label": {
+        "fontFamily": "Plus Jakarta Sans, Jakarta Fallback, system-ui, sans-serif",
+        "fontSize": "0.6875rem",
+        "fontSizeFrom360": "0.75rem",
+        "fontWeight": 500,
+        "fontWeightCurrent": 700,
+        "lineHeight": 1,
+        "letterSpacing": "0"
+      }
+    },
+    "rounded": {
+      "none": "0",
+      "control": "0.25rem"
+    },
+    "spacing": {
+      "scale": "4 8 16 24 32 48 64 128 px",
+      "gutter": "clamp(16px, 2.8vw, 40px)",
+      "grid-columns": 12,
+      "grid-gap": "24px",
+      "measure": "68ch",
+      "content-max": "1600px",
+      "section-phone": "48px",
+      "section": "clamp(5rem, 10vh, 9rem)",
+      "nav-height": "72px",
+      "nav-height-phone": "56px",
+      "tab-bar-height": "calc(64px + env(safe-area-inset-bottom))",
+      "touch-min": "44px",
+      "tap-floor": "24px",
+      "button-height": "48px",
+      "button-gap": "8px",
+      "row-ledger-pinned": "clamp(56px, 9svh, 80px)",
+      "row-toggle-min": "48px",
+      "row-sheet-min": "48px",
+      "row-faq-min": "56px",
+      "row-footer-min": "44px",
+      "rule": "1px",
+      "rule-hover": "2px",
+      "toggle-box": "24px",
+      "mask-pad-bottom": "0.25em",
+      "mask-pad-inline": "0.08em",
+      "mark-hero": "min(34vw, calc(100svh - 372px))",
+      "mark-hero-phone": "62vw",
+      "mark-hero-phone-bleed": "-6vw"
+    },
+    "motion": {
+      "micro": "150ms",
+      "press": "120ms",
+      "settle-text": "300ms",
+      "move": "400ms",
+      "scene": "800ms",
+      "sheet-open": "300ms",
+      "sheet-close": "200ms",
+      "count-phone": "900ms",
+      "live-region-delay": "500ms",
+      "fonts-ready-cap": "1200ms",
+      "loader-delay": "300ms",
+      "ease-out": "cubic-bezier(.16,1,.3,1)",
+      "ease-in-out": "cubic-bezier(.65,0,.35,1)",
+      "stagger": "60ms",
+      "stagger-max": 8,
+      "scrub": 1,
+      "press-scale": 0.97,
+      "hero-settle-from": "translateY(.06em)",
+      "row-settle-from": "translateY(.5em)",
+      "nav-threshold": "80px",
+      "guard": "(min-width: 1024px) and (pointer: fine) and (min-height: 640px) and (prefers-reduced-motion: no-preference)",
+      "dragonfly-sequence": {
+        "frames": 16,
+        "fallback-frames": 0,
+        "start": "top top",
+        "end": "bottom top",
+        "scrub": 1,
+        "pin": false,
+        "draw": "canvas, crossfading adjacent frames by fraction",
+        "frame-max": "30KB",
+        "total-max": "480KB",
+        "fetch": "after load and idle, guard only, skipped on saveData",
+        "swap": "poster stays until all 16 decode"
+      },
+      "ledger-pin": {
+        "height": "100dvh",
+        "end": "+=220%",
+        "scrub": 1,
+        "invalidate-on-refresh": true,
+        "first-line": "0-35%",
+        "other-lines": "35-90%",
+        "last-line": "90-100%",
+        "counter-from": 0,
+        "counter-to": 5040
+      },
+      "phone-reveal-root-margin": "0px 0px -10% 0px",
+      "personal-ledger": {
+        "tick": "150ms",
+        "row-rule": "400ms",
+        "row-text": "300ms",
+        "figure-roll": "400ms"
+      }
+    },
+    "breakpoints": {
+      "target": "360-430 px is the primary layout; 1280x720 and 1440x900 are the designed desktops",
+      "floor": "320px",
+      "tab-label-step": "360px",
+      "cta-stack-below": "360px",
+      "desktop-nav": "768px",
+      "nav-name-visible": "900px",
+      "guard-width": "1024px",
+      "guard-height": "640px",
+      "content-max": "1600px"
+    },
+    "components": {
+      "button-primary": {
+        "backgroundColor": "{colors.primary}",
+        "textColor": "{colors.ink}",
+        "typography": "{typography.button-label}",
+        "rounded": "{rounded.control}",
+        "height": "{spacing.button-height}",
+        "padding": "0 16px",
+        "contrast": 4.62
+      },
+      "button-primary-on-deep": {
+        "backgroundColor": "{colors.primary}",
+        "textColor": "{colors.ink}",
+        "typography": "{typography.button-label}",
+        "rounded": "{rounded.control}",
+        "height": "{spacing.button-height}",
+        "padding": "0 16px",
+        "contrast": 4.62,
+        "fillAgainstGround": 5.77
+      },
+      "button-warm": {
+        "backgroundColor": "{colors.warm}",
+        "textColor": "{colors.warm-ink}",
+        "typography": "{typography.button-label}",
+        "rounded": "{rounded.control}",
+        "height": "{spacing.button-height}",
+        "padding": "0 16px",
+        "contrast": 7.85
+      },
+      "button-outline": {
+        "backgroundColor": "transparent",
+        "textColor": "{colors.ink}",
+        "borderColor": "{colors.ink}",
+        "typography": "{typography.button-label}",
+        "rounded": "{rounded.control}",
+        "height": "{spacing.button-height}",
+        "padding": "0 16px",
+        "contrast": 11.09
+      },
+      "button-destructive": {
+        "backgroundColor": "{colors.destructive}",
+        "textColor": "{colors.canvas}",
+        "typography": "{typography.button-label}",
+        "rounded": "{rounded.control}",
+        "height": "{spacing.button-height}",
+        "padding": "0 16px",
+        "contrast": 6.04
+      },
+      "link": {
+        "textColor": "{colors.primary-text}",
+        "typography": "{typography.body}",
+        "contrast": 4.62
+      },
+      "nav-link-canvas": {
+        "textColor": "{colors.ink}",
+        "typography": "{typography.nav-link}",
+        "contrast": 11.09
+      },
+      "nav-bar-depth": {
+        "backgroundColor": "{colors.depth}",
+        "textColor": "{colors.canvas}",
+        "typography": "{typography.nav-link}",
+        "rounded": "{rounded.none}",
+        "height": "{spacing.nav-height}",
+        "contrast": 6.22
+      },
+      "nav-signup": {
+        "backgroundColor": "{colors.warm}",
+        "textColor": "{colors.warm-ink}",
+        "typography": "{typography.nav-link}",
+        "rounded": "{rounded.control}",
+        "contrast": 7.85,
+        "fillAgainstDepth": 3.91
+      },
+      "tab-bar": {
+        "backgroundColor": "{colors.surface}",
+        "height": "{spacing.tab-bar-height}"
+      },
+      "tab-cell": {
+        "textColor": "{colors.ink}",
+        "typography": "{typography.tab-label}",
+        "rounded": "{rounded.none}",
+        "contrast": 12
+      },
+      "tab-cell-current": {
+        "textColor": "{colors.ink}",
+        "borderColor": "{colors.ink}",
+        "typography": "{typography.tab-label}",
+        "rounded": "{rounded.none}",
+        "contrast": 12
+      },
+      "tab-cell-signup": {
+        "backgroundColor": "{colors.warm}",
+        "textColor": "{colors.warm-ink}",
+        "typography": "{typography.tab-label}",
+        "rounded": "{rounded.none}",
+        "contrast": 7.85
+      },
+      "sheet": {
+        "backgroundColor": "{colors.surface}",
+        "textColor": "{colors.ink}",
+        "typography": "{typography.body}",
+        "rounded": "{rounded.none}",
+        "contrast": 12
+      },
+      "input": {
+        "backgroundColor": "{colors.surface}",
+        "textColor": "{colors.ink}",
+        "borderColor": "{colors.ink-2}",
+        "typography": "{typography.input}",
+        "rounded": "{rounded.control}",
+        "height": "{spacing.button-height}",
+        "padding": "0 16px",
+        "contrast": 12,
+        "borderAgainstCanvas": 5.21
+      },
+      "row-canvas": {
+        "textColor": "{colors.ink}",
+        "borderColor": "{colors.line}",
+        "typography": "{typography.row-name}",
+        "rounded": "{rounded.none}",
+        "contrast": 11.09
+      },
+      "row-deep": {
+        "textColor": "{colors.canvas}",
+        "borderColor": "{colors.line-deep}",
+        "typography": "{typography.row-name}",
+        "rounded": "{rounded.none}",
+        "contrast": 13.86
+      },
+      "row-deep-arriving": {
+        "textColor": "{colors.warm}",
+        "borderColor": "{colors.warm}",
+        "typography": "{typography.row-name}",
+        "rounded": "{rounded.none}",
+        "contrast": 8.72
+      },
+      "ledger-figure": {
+        "textColor": "{colors.warm}",
+        "typography": "{typography.ledger-figure}",
+        "contrast": 8.72
+      },
+      "toggle-off-deep": {
+        "backgroundColor": "transparent",
+        "borderColor": "{colors.on-deep-muted}",
+        "textColor": "{colors.canvas}",
+        "rounded": "{rounded.control}",
+        "size": "{spacing.toggle-box}",
+        "contrast": 13.86,
+        "boxAgainstGround": 7.48
+      },
+      "toggle-on-deep": {
+        "backgroundColor": "{colors.warm}",
+        "borderColor": "{colors.warm}",
+        "tickColor": "{colors.warm-ink}",
+        "textColor": "{colors.canvas}",
+        "rounded": "{rounded.control}",
+        "size": "{spacing.toggle-box}",
+        "contrast": 13.86,
+        "boxAgainstGround": 8.72,
+        "tickAgainstBox": 7.85
+      },
+      "toggle-off-canvas": {
+        "backgroundColor": "transparent",
+        "borderColor": "{colors.ink-2}",
+        "textColor": "{colors.ink}",
+        "rounded": "{rounded.control}",
+        "size": "{spacing.toggle-box}",
+        "contrast": 11.09,
+        "boxAgainstGround": 5.21
+      },
+      "toggle-on-canvas": {
+        "backgroundColor": "{colors.warm}",
+        "borderColor": "{colors.ink}",
+        "tickColor": "{colors.warm-ink}",
+        "textColor": "{colors.ink}",
+        "rounded": "{rounded.control}",
+        "size": "{spacing.toggle-box}",
+        "contrast": 11.09,
+        "boxAgainstGround": 11.09,
+        "tickAgainstBox": 7.85
+      },
+      "written-row-deep": {
+        "textColor": "{colors.canvas}",
+        "borderColor": "{colors.line-deep}",
+        "typography": "{typography.row-amount}",
+        "rounded": "{rounded.none}",
+        "contrast": 13.86
+      },
+      "written-row-note-deep": {
+        "textColor": "{colors.on-deep-muted}",
+        "typography": "{typography.meta}",
+        "contrast": 7.48
+      },
+      "running-figure-deep": {
+        "textColor": "{colors.warm}",
+        "typography": "{typography.row-amount}",
+        "contrast": 8.72
+      },
+      "running-figure-canvas": {
+        "backgroundColor": "{colors.warm}",
+        "textColor": "{colors.warm-ink}",
+        "typography": "{typography.row-amount}",
+        "rounded": "{rounded.none}",
+        "padding": "16px",
+        "contrast": 7.85
+      },
+      "in-ledger-mark": {
+        "backgroundColor": "{colors.warm}",
+        "borderColor": "{colors.ink}",
+        "tickColor": "{colors.warm-ink}",
+        "textColor": "{colors.ink}",
+        "typography": "{typography.meta}",
+        "rounded": "{rounded.control}",
+        "size": "20px",
+        "contrast": 11.09
+      },
+      "signup-progress-empty": {
+        "borderColor": "{colors.line}",
+        "textColor": "{colors.ink-2}",
+        "typography": "{typography.meta}",
+        "contrast": 5.21
+      },
+      "signup-progress-filled": {
+        "borderColor": "{colors.ink}",
+        "textColor": "{colors.ink-2}",
+        "typography": "{typography.meta}",
+        "contrast": 5.21,
+        "ruleAgainstGround": 11.09
+      }
+    }
+  },
+  "pairings": [
+    {
+      "foreground": "ink",
+      "background": "canvas",
+      "ratio": 11.09,
+      "group": "Legal: text",
+      "use": "Reading text, headings, row amounts"
+    },
+    {
+      "foreground": "ink",
+      "background": "surface",
+      "ratio": 12,
+      "group": "Legal: text",
+      "use": "Inputs, Sheet, tab bar"
+    },
+    {
+      "foreground": "ink",
+      "background": "line",
+      "ratio": 8.79,
+      "group": "Legal: text",
+      "use": "Dropdown row on hover (`--accent`)"
+    },
+    {
+      "foreground": "ink-2",
+      "background": "canvas",
+      "ratio": 5.21,
+      "group": "Legal: text",
+      "use": "Secondary text"
+    },
+    {
+      "foreground": "ink-2",
+      "background": "surface",
+      "ratio": 5.64,
+      "group": "Legal: text",
+      "use": "Secondary text, input placeholder"
+    },
+    {
+      "foreground": "primary-text",
+      "background": "canvas",
+      "ratio": 4.62,
+      "group": "Legal: text",
+      "use": "Small teal text, links, eyebrows, \"Apply Now\""
+    },
+    {
+      "foreground": "primary-text",
+      "background": "surface",
+      "ratio": 5,
+      "group": "Legal: text",
+      "use": "Links in Sheet and cards"
+    },
+    {
+      "foreground": "depth",
+      "background": "canvas",
+      "ratio": 6.22,
+      "group": "Legal: text",
+      "use": "The mark on canvas; text if needed"
+    },
+    {
+      "foreground": "depth",
+      "background": "surface",
+      "ratio": 6.73,
+      "group": "Legal: text",
+      "use": "The mark in the sidebar"
+    },
+    {
+      "foreground": "destructive",
+      "background": "canvas",
+      "ratio": 6.04,
+      "group": "Legal: text",
+      "use": "Error text, alert"
+    },
+    {
+      "foreground": "destructive",
+      "background": "surface",
+      "ratio": 6.54,
+      "group": "Legal: text",
+      "use": "Error text, \"Log out\" row"
+    },
+    {
+      "foreground": "destructive",
+      "background": "line",
+      "ratio": 4.79,
+      "group": "Legal: text",
+      "use": "\"Log out\" row on hover"
+    },
+    {
+      "foreground": "canvas",
+      "background": "depth",
+      "ratio": 6.22,
+      "group": "Legal: text",
+      "use": "Nav bar, CTA band, secondary button"
+    },
+    {
+      "foreground": "canvas",
+      "background": "deep",
+      "ratio": 13.86,
+      "group": "Legal: text",
+      "use": "Ledger rows, written-in rows, toggle labels"
+    },
+    {
+      "foreground": "on-deep-muted",
+      "background": "deep",
+      "ratio": 7.48,
+      "group": "Legal: text",
+      "use": "Descriptions and notes on deep"
+    },
+    {
+      "foreground": "warm",
+      "background": "deep",
+      "ratio": 8.72,
+      "group": "Legal: text",
+      "use": "Ledger figure, arriving line, running figure"
+    },
+    {
+      "foreground": "warm",
+      "background": "depth",
+      "ratio": 3.91,
+      "group": "Legal: text",
+      "use": "Large type only, ≥ 24 px; otherwise fill only"
+    },
+    {
+      "foreground": "ink",
+      "background": "primary",
+      "ratio": 4.62,
+      "group": "Legal: labels on fills",
+      "use": "Primary button, sidebar active row"
+    },
+    {
+      "foreground": "warm-ink",
+      "background": "warm",
+      "ratio": 7.85,
+      "group": "Legal: labels on fills",
+      "use": "Warm CTA, Sign Up cell, running figure cell on canvas"
+    },
+    {
+      "foreground": "canvas",
+      "background": "destructive",
+      "ratio": 6.04,
+      "group": "Legal: labels on fills",
+      "use": "Destructive button, badge"
+    },
+    {
+      "foreground": "ink-2",
+      "background": "canvas",
+      "ratio": 5.21,
+      "group": "Legal: non-text, ≥ 3:1",
+      "use": "Input border, toggle box off"
+    },
+    {
+      "foreground": "ink-2",
+      "background": "surface",
+      "ratio": 5.64,
+      "group": "Legal: non-text, ≥ 3:1",
+      "use": "Input border on surface"
+    },
+    {
+      "foreground": "ink",
+      "background": "canvas",
+      "ratio": 11.09,
+      "group": "Legal: non-text, ≥ 3:1",
+      "use": "Toggle box on, tick mark border, current tab rule, filled signup rule"
+    },
+    {
+      "foreground": "on-deep-muted",
+      "background": "deep",
+      "ratio": 7.48,
+      "group": "Legal: non-text, ≥ 3:1",
+      "use": "Toggle box off"
+    },
+    {
+      "foreground": "warm",
+      "background": "deep",
+      "ratio": 8.72,
+      "group": "Legal: non-text, ≥ 3:1",
+      "use": "Toggle box on"
+    },
+    {
+      "foreground": "warm-ink",
+      "background": "warm",
+      "ratio": 7.85,
+      "group": "Legal: non-text, ≥ 3:1",
+      "use": "The tick inside a box"
+    },
+    {
+      "foreground": "primary",
+      "background": "deep",
+      "ratio": 5.77,
+      "group": "Legal: non-text, ≥ 3:1",
+      "use": "Primary button fill on deep; a fill only, never text"
+    },
+    {
+      "foreground": "mint",
+      "background": "deep",
+      "ratio": 9.79,
+      "group": "Legal: non-text, ≥ 3:1",
+      "use": "Dragonfly strokes"
+    },
+    {
+      "foreground": "canvas",
+      "background": "depth",
+      "ratio": 6.22,
+      "group": "Legal: non-text, ≥ 3:1",
+      "use": "The mark in the depth bar"
+    },
+    {
+      "foreground": "ink",
+      "background": "primary",
+      "ratio": 4.62,
+      "group": "Legal: non-text, ≥ 3:1",
+      "use": "The hero mark under the words at full colour; ≥ 3:1 sampled in shade"
+    },
+    {
+      "foreground": "primary-text",
+      "background": "canvas",
+      "ratio": 4.62,
+      "group": "Focus rings, 2 px, offset 2 px",
+      "use": "Default"
+    },
+    {
+      "foreground": "primary-text",
+      "background": "surface",
+      "ratio": 5,
+      "group": "Focus rings, 2 px, offset 2 px",
+      "use": "Inputs, Sheet, tab bar, cards"
+    },
+    {
+      "foreground": "primary-text",
+      "background": "line",
+      "ratio": 3.67,
+      "group": "Focus rings, 2 px, offset 2 px",
+      "use": "Dropdown row on hover; ring only"
+    },
+    {
+      "foreground": "warm",
+      "background": "depth",
+      "ratio": 3.91,
+      "group": "Focus rings, 2 px, offset 2 px",
+      "use": "Nav bar, CTA band"
+    },
+    {
+      "foreground": "warm",
+      "background": "deep",
+      "ratio": 8.72,
+      "group": "Focus rings, 2 px, offset 2 px",
+      "use": "Ledger, Your ledger"
+    },
+    {
+      "foreground": "warm-ink",
+      "background": "warm",
+      "ratio": 7.85,
+      "group": "Focus rings, 2 px, offset 2 px",
+      "use": "Warm tab cell only, inset, because it has no ground beside it"
+    },
+    {
+      "foreground": "canvas",
+      "background": "line-deep",
+      "ratio": 8.5,
+      "group": "Worst case on the ink-wash plate",
+      "use": ""
+    },
+    {
+      "foreground": "on-deep-muted",
+      "background": "line-deep",
+      "ratio": 4.59,
+      "group": "Worst case on the ink-wash plate",
+      "use": ""
+    },
+    {
+      "foreground": "warm",
+      "background": "line-deep",
+      "ratio": 5.35,
+      "group": "Worst case on the ink-wash plate",
+      "use": ""
+    },
+    {
+      "foreground": "mint",
+      "background": "line-deep",
+      "ratio": 6.01,
+      "group": "Worst case on the ink-wash plate",
+      "use": ""
+    },
+    {
+      "foreground": "primary",
+      "background": "line-deep",
+      "ratio": 3.54,
+      "group": "Worst case on the ink-wash plate",
+      "use": ""
+    },
+    {
+      "foreground": "line",
+      "background": "canvas",
+      "ratio": 1.26,
+      "group": "Decorative only, never the only cue for a control",
+      "use": "Hairlines, empty signup rule"
+    },
+    {
+      "foreground": "line",
+      "background": "surface",
+      "ratio": 1.37,
+      "group": "Decorative only, never the only cue for a control",
+      "use": "Tab bar rules, Sheet rows"
+    },
+    {
+      "foreground": "line-deep",
+      "background": "deep",
+      "ratio": 1.63,
+      "group": "Decorative only, never the only cue for a control",
+      "use": "Hairlines on deep"
+    },
+    {
+      "foreground": "primary",
+      "background": "canvas",
+      "ratio": 2.4,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "Fails as text, including at display size"
+    },
+    {
+      "foreground": "primary",
+      "background": "surface",
+      "ratio": 2.6,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "Fails as text"
+    },
+    {
+      "foreground": "canvas",
+      "background": "primary",
+      "ratio": 2.4,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "The old white-on-teal failure"
+    },
+    {
+      "foreground": "surface",
+      "background": "primary",
+      "ratio": 2.6,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "The old white-on-teal failure"
+    },
+    {
+      "foreground": "primary",
+      "background": "depth",
+      "ratio": 2.59,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "Fails on the bar and band"
+    },
+    {
+      "foreground": "warm",
+      "background": "canvas",
+      "ratio": 1.59,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "Never text, never a lone cue"
+    },
+    {
+      "foreground": "warm",
+      "background": "surface",
+      "ratio": 1.72,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "Never text"
+    },
+    {
+      "foreground": "warm",
+      "background": "primary",
+      "ratio": 1.51,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "Never adjacent as meaning"
+    },
+    {
+      "foreground": "primary-text",
+      "background": "warm",
+      "ratio": 2.91,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "So a ring never sits on warm"
+    },
+    {
+      "foreground": "mint",
+      "background": "canvas",
+      "ratio": 1.42,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "The old mark's failure"
+    },
+    {
+      "foreground": "mint",
+      "background": "surface",
+      "ratio": 1.53,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "Same"
+    },
+    {
+      "foreground": "on-deep-muted",
+      "background": "depth",
+      "ratio": 3.35,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "Fails as body text on the band"
+    },
+    {
+      "foreground": "ink-2",
+      "background": "line",
+      "ratio": 4.13,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "Why `--muted` is not `line`"
+    },
+    {
+      "foreground": "ink-2",
+      "background": "deep",
+      "ratio": 2.66,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "Light-page text does not carry onto deep"
+    },
+    {
+      "foreground": "ink-2",
+      "background": "warm",
+      "ratio": 3.28,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "Fails as a label"
+    },
+    {
+      "foreground": "ink",
+      "background": "deep",
+      "ratio": 1.25,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "Same"
+    },
+    {
+      "foreground": "ink",
+      "background": "depth",
+      "ratio": 1.78,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "Why the nav's links change"
+    },
+    {
+      "foreground": "depth",
+      "background": "deep",
+      "ratio": 2.23,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "Depth mark or text on the Ledger"
+    },
+    {
+      "foreground": "destructive",
+      "background": "deep",
+      "ratio": 2.3,
+      "group": "Banned, measured so nobody rediscovers them",
+      "use": "No error text on deep"
+    },
+    {
+      "foreground": "ink",
+      "background": "warm",
+      "ratio": 6.98,
+      "group": "Measured, passes, still not permitted",
+      "use": "`warm-ink` is the label colour; two would drift"
+    },
+    {
+      "foreground": "mint",
+      "background": "depth",
+      "ratio": 4.39,
+      "group": "Measured, passes, still not permitted",
+      "use": "Mint is on deep only"
+    },
+    {
+      "foreground": "surface",
+      "background": "depth",
+      "ratio": 6.73,
+      "group": "Measured, passes, still not permitted",
+      "use": "`canvas` is the light on depth"
+    },
+    {
+      "foreground": "surface",
+      "background": "deep",
+      "ratio": 15.01,
+      "group": "Measured, passes, still not permitted",
+      "use": "`canvas` is the light on deep"
+    }
+  ],
+  "extensions": {
+    "colorMeta": {
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Heavy Paper",
+        "purpose": "Ground",
+        "canonical": "#f6f6f3",
+        "hsl": "60 14% 96%"
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Clean Sheet",
+        "purpose": "Inputs, Sheet, tab bar",
+        "canonical": "#ffffff",
+        "hsl": "0 0% 100%"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ledger Ink",
+        "purpose": "Reading, labels on primary",
+        "canonical": "#283848",
+        "hsl": "210 29% 22%"
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "purpose": "Secondary text, input border",
+        "canonical": "#5b6975",
+        "hsl": "207.7 12.5% 40.8%"
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "purpose": "Decorative rules",
+        "canonical": "#d9dde1",
+        "hsl": "210 11.8% 86.7%"
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Family Teal",
+        "purpose": "Action fills only, never text on light",
+        "canonical": "#18b1bf",
+        "hsl": "185 78% 42%"
+      },
+      "primary-text": {
+        "role": "primary",
+        "displayName": "Deep Teal",
+        "purpose": "Small teal text, links, focus on light",
+        "canonical": "#0e7b86",
+        "hsl": "185.5 81.1% 29%"
+      },
+      "depth": {
+        "role": "secondary",
+        "displayName": "Depth Blue",
+        "purpose": "Nav bar, CTA band, mark on canvas",
+        "canonical": "#316272",
+        "hsl": "195 40% 32%"
+      },
+      "deep": {
+        "role": "secondary",
+        "displayName": "Ink Wash",
+        "purpose": "The Ledger ground only",
+        "canonical": "#0f2a33",
+        "hsl": "195 55% 13%"
+      },
+      "on-deep-muted": {
+        "role": "neutral",
+        "displayName": "Mist",
+        "purpose": "Secondary text on deep",
+        "canonical": "#a8bac2",
+        "hsl": "198 18% 71%"
+      },
+      "line-deep": {
+        "role": "neutral",
+        "displayName": "Deep Hairline",
+        "purpose": "Decorative rules on deep",
+        "canonical": "#2c4c58",
+        "hsl": "196.4 33.3% 25.9%"
+      },
+      "warm": {
+        "role": "tertiary",
+        "displayName": "Marigold",
+        "purpose": "The event: this is written down",
+        "canonical": "#f6bd13",
+        "hsl": "44.9 92.7% 52%"
+      },
+      "warm-ink": {
+        "role": "tertiary",
+        "displayName": "Burnt Umber",
+        "purpose": "Label on warm",
+        "canonical": "#3a2d00",
+        "hsl": "46.6 100% 11.4%"
+      },
+      "mint": {
+        "role": "tertiary",
+        "displayName": "Dragonfly Mint",
+        "purpose": "Dragonfly strokes on deep only, never a glow",
+        "canonical": "#38e8d8",
+        "hsl": "174.5 79.3% 56.5%"
+      },
+      "destructive": {
+        "role": "error",
+        "displayName": "Correction Red",
+        "purpose": "Errors only",
+        "canonical": "#b3261e",
+        "hsl": "3 71% 41%"
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "micro",
+        "value": "150ms"
+      },
+      {
+        "name": "press",
+        "value": "120ms"
+      },
+      {
+        "name": "settle-text",
+        "value": "300ms"
+      },
+      {
+        "name": "move",
+        "value": "400ms"
+      },
+      {
+        "name": "scene",
+        "value": "800ms"
+      },
+      {
+        "name": "sheet-open",
+        "value": "300ms"
+      },
+      {
+        "name": "sheet-close",
+        "value": "200ms"
+      },
+      {
+        "name": "count-phone",
+        "value": "900ms"
+      },
+      {
+        "name": "live-region-delay",
+        "value": "500ms"
+      },
+      {
+        "name": "fonts-ready-cap",
+        "value": "1200ms"
+      },
+      {
+        "name": "loader-delay",
+        "value": "300ms"
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.16,1,.3,1)"
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(.65,0,.35,1)"
+      },
+      {
+        "name": "stagger",
+        "value": "60ms"
+      },
+      {
+        "name": "hero-settle-from",
+        "value": "translateY(.06em)"
+      },
+      {
+        "name": "row-settle-from",
+        "value": "translateY(.5em)"
+      },
+      {
+        "name": "nav-threshold",
+        "value": "80px"
+      },
+      {
+        "name": "guard",
+        "value": "(min-width: 1024px) and (pointer: fine) and (min-height: 640px) and (prefers-reduced-motion: no-preference)"
+      },
+      {
+        "name": "phone-reveal-root-margin",
+        "value": "0px 0px -10% 0px"
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "target",
+        "value": "360-430 px is the primary layout; 1280x720 and 1440x900 are the designed desktops"
+      },
+      {
+        "name": "floor",
+        "value": "320px"
+      },
+      {
+        "name": "tab-label-step",
+        "value": "360px"
+      },
+      {
+        "name": "cta-stack-below",
+        "value": "360px"
+      },
+      {
+        "name": "desktop-nav",
+        "value": "768px"
+      },
+      {
+        "name": "nav-name-visible",
+        "value": "900px"
+      },
+      {
+        "name": "guard-width",
+        "value": "1024px"
+      },
+      {
+        "name": "guard-height",
+        "value": "640px"
+      },
+      {
+        "name": "content-max",
+        "value": "1600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Default action: ink on family teal, never white.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Explore Bonuses</a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;height:48px;padding:0 16px;background:#18b1bf;color:#283848;font:700 1rem/1 \"Plus Jakarta Sans\",system-ui,sans-serif;border-radius:.25rem;text-decoration:none;transition:transform 120ms cubic-bezier(.16,1,.3,1)}.ds-btn-primary:hover{text-decoration:underline}.ds-btn-primary:active{transform:scale(.97)}.ds-btn-primary:focus-visible{outline:2px solid #0e7b86;outline-offset:2px}"
+    },
+    {
+      "name": "Warm CTA",
+      "kind": "button",
+      "refersTo": "button-warm",
+      "description": "One closing CTA per page, and Sign Up.",
+      "html": "<a class=\"ds-btn-warm\" href=\"#\">Start Your Journey</a>",
+      "css": ".ds-btn-warm{display:inline-flex;align-items:center;height:48px;padding:0 16px;background:#f6bd13;color:#3a2d00;font:700 1rem/1 \"Plus Jakarta Sans\",system-ui,sans-serif;border-radius:.25rem;text-decoration:none;transition:transform 120ms cubic-bezier(.16,1,.3,1)}.ds-btn-warm:hover{text-decoration:underline}.ds-btn-warm:active{transform:scale(.97)}.ds-btn-warm:focus-visible{outline:2px solid #0e7b86;outline-offset:2px}"
+    },
+    {
+      "name": "Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Surface fill, ink-2 border, 16 px text.",
+      "html": "<input class=\"ds-input\" aria-label=\"Email\">",
+      "css": ".ds-input{height:48px;padding:0 16px;background:#ffffff;color:#283848;border:1px solid #5b6975;border-radius:.25rem;font:400 1rem/1.5 \"Plus Jakarta Sans\",system-ui,sans-serif}.ds-input:focus-visible{outline:2px solid #0e7b86;outline-offset:2px}"
+    },
+    {
+      "name": "Ledger Row on Deep",
+      "kind": "custom",
+      "refersTo": "row-deep",
+      "description": "Amount leads, whole row is the link, hangs off a hairline.",
+      "html": "<a class=\"ds-row\" href=\"#\"><span class=\"ds-row-amt\">€3,600/year</span><span class=\"ds-row-name\">Wohnbeihilfe</span><span>Apply Now</span></a>",
+      "css": ".ds-row{display:grid;grid-template-columns:1fr auto;gap:8px;padding:16px;background:#0f2a33;color:#f6f6f3;border-bottom:1px solid #2c4c58;text-decoration:none;font-family:\"Plus Jakarta Sans\",system-ui,sans-serif}.ds-row-amt{grid-column:1/-1;font:700 1.75rem/1 \"Plus Jakarta Sans\",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.02em}.ds-row-name{font-weight:600}.ds-row:focus-visible{outline:2px solid #f6bd13;outline-offset:2px}"
+    },
+    {
+      "name": "Toggle Off and On, Deep",
+      "kind": "custom",
+      "refersTo": "toggle-on-deep",
+      "description": "Native checkbox in a ruled row; warm box when on. The warm-ink tick is an SVG sibling in the build.",
+      "html": "<label class=\"ds-tog\"><input type=\"checkbox\" class=\"ds-tog-box\"><span>I live away from my parents</span></label>",
+      "css": ".ds-tog{display:flex;align-items:center;gap:16px;min-height:48px;padding:0 16px;background:#0f2a33;color:#f6f6f3;border-bottom:1px solid #2c4c58;font:400 1rem/1.5 \"Plus Jakarta Sans\",system-ui,sans-serif}.ds-tog-box{appearance:none;width:24px;height:24px;margin:0;border:2px solid #a8bac2;border-radius:.25rem;transition:transform 120ms cubic-bezier(.16,1,.3,1),background 150ms,border-color 150ms}.ds-tog-box:checked{background:#f6bd13;border-color:#f6bd13}.ds-tog-box:active{transform:scale(.97)}.ds-tog-box:focus-visible{outline:2px solid #f6bd13;outline-offset:2px}"
+    },
+    {
+      "name": "Running Figure, Deep",
+      "kind": "custom",
+      "refersTo": "running-figure-deep",
+      "description": "The visitor's own figure: warm, row scale, always with its note.",
+      "html": "<p class=\"ds-fig\">Up to €5,076</p><p class=\"ds-fig-note\">An estimate, not a promise.</p>",
+      "css": ".ds-fig{margin:0;padding:16px 16px 4px;background:#0f2a33;color:#f6bd13;font:700 1.75rem/1 \"Plus Jakarta Sans\",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.02em}.ds-fig-note{margin:0;padding:0 16px 16px;background:#0f2a33;color:#a8bac2;font:400 .875rem/1.5 \"Plus Jakarta Sans\",system-ui,sans-serif}"
+    },
+    {
+      "name": "Running Figure, Canvas",
+      "kind": "custom",
+      "refersTo": "running-figure-canvas",
+      "description": "On /bonuses: warm-ink on a square warm cell, because warm text fails on canvas.",
+      "html": "<p class=\"ds-figc\">Up to €5,076</p>",
+      "css": ".ds-figc{margin:0;padding:16px;background:#f6bd13;color:#3a2d00;font:700 1.75rem/1 \"Plus Jakarta Sans\",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.02em}"
+    },
+    {
+      "name": "Tab Bar Cell",
+      "kind": "nav",
+      "refersTo": "tab-cell-current",
+      "description": "Text-only, 2 px ink rule on current; Sign Up cell is warm.",
+      "html": "<nav class=\"ds-tabs\"><a aria-current=\"page\" href=\"#\">Home</a><a href=\"#\">Bonuses</a><a class=\"ds-tab-up\" href=\"#\">Sign Up</a></nav>",
+      "css": ".ds-tabs{display:flex;background:#ffffff;border-top:1px solid #d9dde1;font:500 .75rem/1 \"Plus Jakarta Sans\",system-ui,sans-serif}.ds-tabs a{flex:1;display:flex;align-items:center;justify-content:center;height:64px;color:#283848;text-decoration:none;border-right:1px solid #d9dde1}.ds-tabs a[aria-current]{font-weight:700;box-shadow:inset 0 2px 0 #283848}.ds-tabs .ds-tab-up{background:#f6bd13;color:#3a2d00;font-weight:700}.ds-tabs a:focus-visible{outline:2px solid #0e7b86;outline-offset:-2px}.ds-tabs .ds-tab-up:focus-visible{outline-color:#3a2d00}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Bright Ledger",
+    "overview": "A student's open ledger on heavy paper in daylight, ruled in hairlines and big plain figures, with one deep moment where each grant is written in line by line.",
+    "rules": [
+      {
+        "name": "The One Rule Rule",
+        "body": "Everything hangs off a hairline. The rule runs from the hero's stat strip through every list into the Ledger and closes under the footer's wordmark.",
+        "section": "Visual World"
+      },
+      {
+        "name": "The Measured Numerals Rule",
+        "body": "Any € amount uses `font-variant-numeric: tabular-nums` at weight 400, 700 or 800, the weights where `tnum` was measured. Instrument Serif has no `tnum`, so an amount is never set in it as a figure; \"€2,400\" inside Lisa M.'s quote is reading text.",
+        "section": "Type"
+      },
+      {
+        "name": "The Largest Figure Rule",
+        "body": "On home, €5,040 at `ledger-figure` keeps the largest type in its section. The running figure stays at `row-amount`, always.",
+        "section": "Type"
+      },
+      {
+        "name": "The Closed Palette Rule",
+        "body": "Every colour is in the token block. Nothing is composed at build time on public pages: no `/90` hovers, no tints, no gradients. A pairing not written below is not permitted.",
+        "section": "Colour"
+      },
+      {
+        "name": "The Written Down Rule",
+        "body": "Warm means \"this is written down\": the Sign Up cell in nav and tab bar, one closing CTA per page, the Ledger figure, the Ledger's arriving line, and the visitor's own figure and ticks. Nowhere else.",
+        "section": "Colour"
+      },
+      {
+        "name": "The Deep Once Rule",
+        "body": "`deep` is the Ledger's ground on `/` and \"Your ledger\", which continues it, and nowhere else. `mint` is dragonfly strokes on `deep`, never a glow.",
+        "section": "Colour"
+      }
+    ],
+    "dos": [
+      "Do hang everything off a 1 px hairline, from the stat strip through the Ledger to the wordmark.",
+      "Do let amounts lead rows, in tabular figures, so they stack into a column a thumb can compare by scrolling alone.",
+      "Do keep `primary-text` for every small piece of teal, and `primary` for fills with an `ink` label.",
+      "Do keep warm to its list: Sign Up, one closing CTA per page, the Ledger's arriving line and figure, the visitor's own figure and ticks.",
+      "Do put \"An estimate, not a promise.\" beside the running figure every time it shows, and \"Up to\" at the figure's own size.",
+      "Do test every section with zero generated assets, no motion chunk and storage disabled. It must still read as finished.",
+      "Do keep the hero words readable in their first painted frame: a settle, never a reveal from nothing.",
+      "Do keep past dates, Deadline and Eligible on one small line, so a 2025 date never gets scale."
+    ],
+    "donts": [
+      "Don't drift into a card grid. No bordered cards, shadows, radii above 4 px, or a row wrapped in a box on public pages.",
+      "Don't drift into a reskin. No video, scrim, pill nav or glass; if a section could sit on Education4Students unchanged, it is wrong.",
+      "Don't drift into a game. No streaks, levels, XP, badges, leaderboards, countdowns, scarcity, popups, confetti, sound, pre-ticked boxes or sign-up wall.",
+      "Don't set white on teal, `primary` text on light, warm text on canvas, or a ring on warm. Their ratios are above.",
+      "Don't sum the six bonuses in the Ledger, or let any figure outrank €5,040 in its section.",
+      "Don't make a second deep moment, or bring `deep` or a pin to another route. Mint is strokes on `deep`, never a glow.",
+      "Don't set any € amount in Instrument Serif as a figure, or use the serif beyond its five words and pull quotes.",
+      "Don't add uniform fade-up-on-scroll, scroll-hijacking, a custom cursor, magnetic buttons, or a GSAP request on a phone.",
+      "Don't use `line` as the only cue for a control, compose a colour with `/90` on a public page, or use `overflow-x: hidden` on `html` or `body`.",
+      "Don't describe these figures as verified or sourced anywhere, in the UI or in any handoff."
+    ]
+  }
+}

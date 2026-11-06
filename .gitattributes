@@ -1,0 +1,2 @@
+# The CC0 .gltf originals are hashed in src/assets/hero-pass/LICENCES.md: git must never rewrite their line endings.
+src/assets/hero-pass/** -text

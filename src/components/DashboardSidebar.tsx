@@ -10,7 +10,7 @@ import {
   Settings,
   LogOut,
 } from "lucide-react";
-import logo from "@/assets/dragonfly-logo.png";
+import DragonflyMark from "@/components/brand/DragonflyMark";
 
 const DashboardSidebar = () => {
   const location = useLocation();
@@ -38,7 +38,7 @@ const DashboardSidebar = () => {
         {/* Logo */}
         <div className="border-b border-border p-6">
           <Link to="/" className="flex items-center gap-3">
-            <img src={logo} alt="Care4Students" className="h-10 w-10" />
+            <DragonflyMark title="Care4Students" strokeWidth={14} className="h-10 w-10 text-depth" />
             <span className="text-xl font-bold text-foreground">Care4Students</span>
           </Link>
         </div>
@@ -50,9 +50,9 @@ const DashboardSidebar = () => {
               key={item.path}
               to={item.path}
               className={cn(
-                "flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-smooth",
+                "flex min-h-11 items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-smooth",
                 isActive(item.path)
-                  ? "bg-primary text-primary-foreground shadow-md"
+                  ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground hover:bg-muted hover:text-foreground"
               )}
             >
@@ -69,7 +69,7 @@ const DashboardSidebar = () => {
               // Mock logout
               window.location.href = import.meta.env.BASE_URL;
             }}
-            className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-muted-foreground transition-smooth hover:bg-muted hover:text-foreground"
+            className="flex min-h-11 w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-muted-foreground transition-smooth hover:bg-muted hover:text-foreground"
           >
             <LogOut className="h-5 w-5" />
             <span>Logout</span>

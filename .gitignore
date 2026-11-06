@@ -22,3 +22,13 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# apollo (managed by library/tools/apollo.py)
+.olympus/APOLLO.md
+
+# remotion render project output (media-src/)
+media-src/out
+
+# hero desk render inputs and public/aau-press (never committed, see build plan "press-photo switch")
+media-src/hero-desk/textures
+public/aau-press/

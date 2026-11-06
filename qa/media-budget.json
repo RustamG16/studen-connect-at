@@ -1,0 +1,44 @@
+{
+  "note": "Ceilings from .olympus/05-asset-manifest.md (rows A27-A43, Bytes) and .olympus/06-build-plan.md (Media and motion pass). KB is 1024 bytes. A target is never exceeded: a file over its ceiling is re-encoded, not shipped.",
+  "files": {
+    "banners": {
+      "dir": "public/media/banners",
+      "names": ["bonuses", "housing", "find-buddy", "how-it-works"],
+      "ceilings": { ".mp4": 358400, ".webm": 286720, ".poster.webp": 30720 }
+    },
+    "cards": {
+      "dir": "public/media/cards",
+      "names": ["home-bonuses", "home-housing", "home-roommates", "home-guidance", "how-profile", "how-matched", "how-documents", "how-support"],
+      "ceilings": { ".mp4": 92160, ".webm": 71680, ".poster.webp": 14336, ".poster-192.webp": 5120 }
+    },
+    "blog": {
+      "dir": "public/media/posters",
+      "names": ["blog-bonuses", "blog-housing", "blog-buddy", "blog-lifestyle"],
+      "ceilings": { ".webp": 20480, "-192.webp": 5120 }
+    },
+    "share": {
+      "dir": "public/media/posters",
+      "names": ["og"],
+      "ceilings": { ".jpg": 81920 }
+    }
+  },
+  "routes": {
+    "note": "New media only (banners, cards, posters). beforeLoad: requests started before the load event. Most: after a full scroll and 6 s, worst case counted with MP4 (Chromium takes WebM).",
+    "/": { "beforeLoad": 0, "most390": 20480, "most1440": 425984 },
+    "/bonuses": { "beforeLoad": 30720, "most390": 389120, "most1440": 389120 },
+    "/housing": { "beforeLoad": 30720, "most390": 389120, "most1440": 389120 },
+    "/find-buddy": { "beforeLoad": 30720, "most390": 389120, "most1440": 389120 },
+    "/how-it-works": { "beforeLoad": 30720, "most390": 409600, "most1440": 815104 },
+    "/blog": { "beforeLoad": 30720, "most390": 20480, "most1440": 81920 },
+    "none": ["/faq", "/contact", "/legal", "/login", "/signup", "/nowhere"]
+  },
+  "limits": {
+    "cls": 0.05,
+    "lcpMs": 2500,
+    "bannerMaxWidth": 854,
+    "cardMaxWidth": 240,
+    "entryJsGzipBaseline": 102627,
+    "entryJsGzipGrowthMax": 2048,
+    "firstLoadJsGzipMax390": 174080
+  }
+}

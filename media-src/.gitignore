@@ -1,0 +1,7 @@
+node_modules
+out
+public/work
+public/fonts
+public/inputs/dragonfly-frame-00.webp
+src/tokens.generated.json
+public/inputs/paper-clean.jpg

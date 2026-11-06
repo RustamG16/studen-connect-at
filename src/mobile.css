@@ -1,0 +1,76 @@
+/* ---------- Mobile app shell (≤ 767 px) ------------------------------------------------------
+   Ported from Convenium.Design `mobile-app-shell` (reference/shell/) and the E4S port. Desktop is
+   untouched: the bar is display:none above the query. The shell reads the site's own tokens
+   (src/index.css, raw HSL triplets) through --m-* names and never hardcodes a colour. */
+
+.m-tabbar { display: none; }
+
+@media (max-width: 767.98px) {
+  :root {
+    --m-tab-h: 64px;
+    --m-safe-b: env(safe-area-inset-bottom, 0px);
+    --m-surface: hsl(var(--surface));
+    --m-ink: hsl(var(--ink));
+    --m-muted: hsl(var(--ink-2));
+    --m-rule: hsl(var(--line));
+    --m-warm: hsl(var(--warm));
+    --m-warm-ink: hsl(var(--warm-ink));
+    /* Footer.tsx already pads itself by --tab-h, so the last row clears the bar. */
+    --tab-h: calc(var(--m-tab-h) + var(--m-safe-b));
+  }
+
+  html { scroll-padding-bottom: var(--tab-h); }
+
+  /* Safe areas, left and right: text stays out of the notch in landscape. */
+  .shell-x {
+    padding-left: max(var(--gutter), env(safe-area-inset-left));
+    padding-right: max(var(--gutter), env(safe-area-inset-right));
+  }
+
+  /* --- Tab bar: five text cells, ruled apart, the last one warm ----------------------------- */
+  .m-tabbar {
+    position: fixed; z-index: 55; left: 0; right: 0; bottom: 0;
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
+    height: var(--tab-h);
+    padding: 0 env(safe-area-inset-right) var(--m-safe-b) env(safe-area-inset-left);
+    background: var(--m-surface);
+    border-top: 1px solid var(--m-rule);
+  }
+  .m-tabbar a {
+    position: relative; display: flex; align-items: center; justify-content: center;
+    min-width: 0; min-height: 44px; padding: 6px 2px;
+    color: var(--m-muted); text-decoration: none; text-align: center;
+    font-size: 0.6875rem; font-weight: 500; line-height: 1.15; letter-spacing: 0;
+    transition: transform var(--dur-press) var(--ease-out);
+    touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+  }
+  .m-tabbar a + a { border-left: 1px solid var(--m-rule); }
+  .m-tabbar a:active { transform: scale(0.97); }
+  /* Reduced motion keeps the press as a change of ground, not as movement. */
+  @media (prefers-reduced-motion: reduce) {
+    .m-tabbar a { transition: background-color var(--dur-press) linear; }
+    .m-tabbar a:active { transform: none; background: hsl(var(--canvas)); }
+    .m-tabbar a.m-tab-primary:active { opacity: 0.85; }
+  }
+  .m-tabbar a[aria-current="page"] { color: var(--m-ink); font-weight: 700; }
+  .m-tabbar a[aria-current="page"]::before {
+    content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 2px; background: var(--m-ink);
+  }
+  .m-tabbar a.m-tab-primary { background: var(--m-warm); color: var(--m-warm-ink); font-weight: 700; border-left-color: transparent; }
+  .m-tabbar a.m-tab-primary[aria-current="page"]::before { background: var(--m-warm-ink); }
+  .m-tabbar a:focus-visible { outline: 2px solid hsl(var(--focus)); outline-offset: -4px; }
+  .m-tabbar a.m-tab-primary:focus-visible { outline-color: var(--m-warm-ink); }
+
+  /* Hidden under the menu sheet or any dialog (the Sheet is z-50, the bar z-55), and while a field
+     that raises the on-screen keyboard has focus so it cannot ride it. Checkboxes, radios and buttons
+     raise none, so Sign Up stays one thumb away through the ledger ticks. */
+  body:has([role="dialog"]) .m-tabbar,
+  body:has(input:is(:not([type]), [type="text"], [type="email"], [type="password"], [type="search"], [type="tel"], [type="url"], [type="number"]):focus, select:focus, textarea:focus) .m-tabbar { display: none; }
+
+  /* --- 2026 floor: 16 px inputs, targets of 24 px or more ------------------------------------ */
+  input, select, textarea { font-size: max(16px, 1em); }
+}
+
+@media (min-width: 360px) and (max-width: 767.98px) {
+  .m-tabbar a { font-size: 0.75rem; }
+}

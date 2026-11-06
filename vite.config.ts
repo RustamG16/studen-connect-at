@@ -12,6 +12,10 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  // The home motion chunk is lazy: without this a cold dev cache finds them late and reloads mid-render.
+  optimizeDeps: {
+    include: ["gsap", "gsap/ScrollTrigger", "@gsap/react", "lenis"],
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

@@ -1,0 +1,24 @@
+{
+  "name": "Care4Students",
+  "palette": [
+    { "name": "Canvas", "hex": "#f6f6f3", "role": "Ground" },
+    { "name": "Surface", "hex": "#ffffff", "role": "Inputs, sheet, tab bar" },
+    { "name": "Ink", "hex": "#283848", "role": "Reading" },
+    { "name": "Ink 2", "hex": "#5b6975", "role": "Secondary text" },
+    { "name": "Line", "hex": "#d9dde1", "role": "Hairlines" },
+    { "name": "Primary", "hex": "#18b1bf", "role": "Action fills" },
+    { "name": "Primary text", "hex": "#0e7b86", "role": "Links, focus on light" },
+    { "name": "Depth", "hex": "#316272", "role": "Nav bar, CTA band" },
+    { "name": "Deep", "hex": "#0f2a33", "role": "The Ledger's ground" },
+    { "name": "On deep, muted", "hex": "#a8bac2", "role": "Secondary on deep" },
+    { "name": "Line, deep", "hex": "#2c4c58", "role": "Hairlines on deep" },
+    { "name": "Warm", "hex": "#f6bd13", "role": "Written down" },
+    { "name": "Warm ink", "hex": "#3a2d00", "role": "Label on warm" },
+    { "name": "Mint", "hex": "#38e8d8", "role": "Line art on deep" },
+    { "name": "Destructive", "hex": "#b3261e", "role": "Errors" }
+  ],
+  "fonts": [
+    { "family": "Plus Jakarta Sans", "role": "Display and text", "weight": 800, "sample": "Funding. Housing. €5,040" },
+    { "family": "Instrument Serif", "role": "Italic accent", "weight": 400, "sample": "Bonuses, Housing, Buddy, Need, Choose" }
+  ]
+}

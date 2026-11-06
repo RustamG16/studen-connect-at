@@ -1,0 +1,20 @@
+{
+  "name": "care4students-media-src",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Offline Remotion render project for Care4Students media. Never imported by the site.",
+  "scripts": {
+    "render:all": "node scripts/render-all.mjs"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.290",
+    "@remotion/media-utils": "4.0.290",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.290"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "typescript": "5.6.3"
+  }
+}

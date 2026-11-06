@@ -2,44 +2,54 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, useNavigationType } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import LoadingScreen from "@/components/LoadingScreen";
-import { useState } from "react";
-import Index from "./pages/Index";
-import Bonuses from "./pages/Bonuses";
-import HowItWorks from "./pages/HowItWorks";
-import Housing from "./pages/Housing";
-import FindBuddy from "./pages/FindBuddy";
-import FAQ from "./pages/FAQ";
-import Contact from "./pages/Contact";
-import Legal from "./pages/Legal";
-import Blog from "./pages/Blog";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import Dashboard from "./pages/Dashboard";
-import DashboardBonuses from "./pages/DashboardBonuses";
-import DashboardHousing from "./pages/DashboardHousing";
-import DashboardBuddy from "./pages/DashboardBuddy";
-import DashboardDocuments from "./pages/DashboardDocuments";
-import DashboardSupport from "./pages/DashboardSupport";
-import DashboardSettings from "./pages/DashboardSettings";
-import NotFound from "./pages/NotFound";
+import MobileTabBar from "@/components/MobileTabBar";
+import { lazy, Suspense, useEffect } from "react";
+const Index = lazy(() => import("./pages/Index"));
+const Bonuses = lazy(() => import("./pages/Bonuses"));
+const HowItWorks = lazy(() => import("./pages/HowItWorks"));
+const Housing = lazy(() => import("./pages/Housing"));
+const FindBuddy = lazy(() => import("./pages/FindBuddy"));
+const FAQ = lazy(() => import("./pages/FAQ"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Legal = lazy(() => import("./pages/Legal"));
+const Blog = lazy(() => import("./pages/Blog"));
+const Login = lazy(() => import("./pages/Login"));
+const Signup = lazy(() => import("./pages/Signup"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const DashboardBonuses = lazy(() => import("./pages/DashboardBonuses"));
+const DashboardHousing = lazy(() => import("./pages/DashboardHousing"));
+const DashboardBuddy = lazy(() => import("./pages/DashboardBuddy"));
+const DashboardDocuments = lazy(() => import("./pages/DashboardDocuments"));
+const DashboardSupport = lazy(() => import("./pages/DashboardSupport"));
+const DashboardSettings = lazy(() => import("./pages/DashboardSettings"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
-const App = () => {
-  const [loading, setLoading] = useState(true);
+/** Scroll to top on PUSH navigation only; POP (back/forward) keeps the browser's own restoration. */
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  const navType = useNavigationType();
+  useEffect(() => {
+    if (navType === "PUSH") window.scrollTo(0, 0);
+  }, [pathname, navType]);
+  return null;
+};
 
+const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <AuthProvider>
-          {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
           <Toaster />
           <Sonner />
         <BrowserRouter basename={import.meta.env.BASE_URL}>
+          <ScrollToTop />
+          <Suspense fallback={<LoadingScreen />}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/bonuses" element={<Bonuses />} />
@@ -111,6 +121,8 @@ const App = () => {
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </Suspense>
+          <MobileTabBar />
         </BrowserRouter>
       </AuthProvider>
     </TooltipProvider>

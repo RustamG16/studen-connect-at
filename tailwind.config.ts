@@ -1,9 +1,12 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
+  // hover: variants only apply where hover exists, so a tap on a phone never leaves a sticky hover state behind.
+  future: { hoverOnlyWhenSupported: true },
   theme: {
     container: {
       center: true,
@@ -14,9 +17,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Manrope", "system-ui", "sans-serif"],
-        body: ["Manrope", "system-ui", "sans-serif"],
-        heading: ["Manrope", "system-ui", "sans-serif"],
+        sans: ['"Plus Jakarta Sans"', '"Jakarta Fallback"', "system-ui", "sans-serif"],
+        body: ['"Plus Jakarta Sans"', '"Jakarta Fallback"', "system-ui", "sans-serif"],
+        heading: ['"Plus Jakarta Sans"', '"Jakarta Fallback"', "system-ui", "sans-serif"],
+        serif: ['"Instrument Serif"', '"Serif Fallback"', "Georgia", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -52,14 +56,16 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        teal: {
-          DEFAULT: "hsl(var(--teal))",
-          light: "hsl(var(--teal-light))",
-        },
-        navy: {
-          DEFAULT: "hsl(var(--navy))",
-          light: "hsl(var(--navy-light))",
-        },
+        canvas: "hsl(var(--canvas))",
+        surface: "hsl(var(--surface))",
+        ink: { DEFAULT: "hsl(var(--ink))", 2: "hsl(var(--ink-2))" },
+        line: { DEFAULT: "hsl(var(--line))", deep: "hsl(var(--line-deep))" },
+        "primary-text": "hsl(var(--primary-text))",
+        depth: "hsl(var(--depth))",
+        deep: "hsl(var(--deep))",
+        "on-deep-muted": "hsl(var(--on-deep-muted))",
+        warm: { DEFAULT: "hsl(var(--warm))", ink: "hsl(var(--warm-ink))" },
+        mint: "hsl(var(--mint))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -78,6 +84,8 @@ export default {
         xl: "calc(var(--radius) + 4px)",
         "2xl": "calc(var(--radius) + 8px)",
       },
+      // `ease-out` is the site token (DESIGN.md, Motion), not Tailwind's stock curve.
+      transitionTimingFunction: { out: "var(--ease-out)" },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -87,37 +95,12 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "fade-in": {
-          from: { opacity: "0", transform: "translateY(40px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
-        },
-        "fade-in-left": {
-          from: { opacity: "0", transform: "translateX(-40px)" },
-          to: { opacity: "1", transform: "translateX(0)" },
-        },
-        "fade-in-right": {
-          from: { opacity: "0", transform: "translateX(40px)" },
-          to: { opacity: "1", transform: "translateX(0)" },
-        },
-        "scale-in": {
-          from: { opacity: "0", transform: "scale(0.9)" },
-          to: { opacity: "1", transform: "scale(1)" },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-12px)" },
-        },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.6s cubic-bezier(0.25,0.1,0.25,1) both",
-        "fade-in-left": "fade-in-left 0.6s cubic-bezier(0.25,0.1,0.25,1) both",
-        "fade-in-right": "fade-in-right 0.6s cubic-bezier(0.25,0.1,0.25,1) both",
-        "scale-in": "scale-in 0.4s cubic-bezier(0.25,0.1,0.25,1) both",
-        float: "float 3s ease-in-out infinite",
+        "accordion-down": "accordion-down 200ms var(--ease-out)",
+        "accordion-up": "accordion-up 200ms var(--ease-out)",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;
